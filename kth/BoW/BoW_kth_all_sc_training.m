@@ -14,7 +14,7 @@ for r=1:RUN
     run = int2str(r);
     fprintf('RUN %s \n',run);
     
-    mu =    load(strcat(path_run_folders, '/run', run, '/visual_vocabulary/means_Ng'  , Ng, '_dim', dim,  '_all_sc.dat'));
+    mu =    load(strcat('./run', run, '/visual_vocabulary/means_Ng'  , Ng, '_dim', dim,  '_all_sc.dat'));
    
     
     for d=1:4
