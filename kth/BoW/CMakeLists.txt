@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+project(partO3)
+#set(CMAKE_BUILD_TYPE Release)
+find_package( OpenCV REQUIRED)
+find_package( Armadillo REQUIRED)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -Wall -pedantic -fopenmp")
+add_executable( kth_FV.exe kth_multiactions_BoW.cpp)
+target_link_libraries( kth_FV.exe ${OpenCV_LIBS} -larmadillo -lhdf5)
