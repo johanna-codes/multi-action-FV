@@ -44,7 +44,7 @@ main(int argc, char** argv)
   
   field <string> rand_videos;
   stringstream run_pos;
-  run_pos << "./run" << r << "/rand_selection_run"<< r << ".dat";
+  run_pos << path_run_folders << "/run" << r << "/rand_selection_run"<< r << ".dat";
   rand_videos.load( run_pos.str() );
   
   //No importa el run. Son todos las personas 
