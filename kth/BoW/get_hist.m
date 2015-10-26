@@ -26,4 +26,4 @@ hist(bin) = hist(bin) + 1;
 
 end
 
-save(probando.mat, 'hist');
+save('probando.mat', 'hist');
