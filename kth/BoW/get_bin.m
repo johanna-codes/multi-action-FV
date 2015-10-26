@@ -1,12 +1,13 @@
 function bin = get_bin(data_onevideo,mu)
 
-[dim n_mu] = size (mu);
+[dim n_mu] = size (mu)
+size(data_onevideo)
 
 prev_dist = inf;
 
 for i=1:n_mu
    
-    dist = norm(data_onevideo,mu(:,i);
+    dist = norm(data_onevideo,mu(:,i));
     
     if dist < prev_dist
         prev_dist = dist;
