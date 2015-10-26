@@ -60,7 +60,7 @@ main(int argc, char** argv)
   {
     wall_clock timer;
     timer.tic();
-      int N_cent = 256;
+      int N_cent = 4000;
       
 
       field <string> rand_videos;
