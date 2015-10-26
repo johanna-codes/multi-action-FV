@@ -1,7 +1,3 @@
-#include "optflow_feat_def.hpp"
-#include "optflow_feat_impl.hpp"
-#include "svm_def.hpp"
-#include "svm_impl.hpp"
 
 inline 
 fisher_vector::BoW(const string  in_Spath,
