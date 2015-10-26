@@ -13,7 +13,7 @@ prev_dist = inf;
 
 for m=1:n_mu
    
-    dist = norm(one_vector,mu(:,m));
+    dist = norm(one_vector,mu(:,m),2);
     
     if dist < prev_dist
         prev_dist = dist;
