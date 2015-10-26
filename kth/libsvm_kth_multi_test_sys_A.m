@@ -27,7 +27,7 @@ dim = int2str(DIM);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Precalculate FV_training set
 % display('Precaculating FVs')
- FV_kth_all_sc_training(Ncent, RUN,DIM);
+% FV_kth_all_sc_training(Ncent, RUN,DIM);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% TRAINING
