@@ -1,7 +1,7 @@
 function bin = get_hist(data_onevideo,mu)
 
 [dim n_mu] = size (mu)
-[dim2 n_vectors] =  size(data_onevideo);
+[dim2 n_vectors] =  size(data_onevideo)
 
 hist = zeros(n_mu,1);
 
