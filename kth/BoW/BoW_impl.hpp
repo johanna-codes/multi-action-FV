@@ -18,7 +18,7 @@ BoW::BoW(const string  in_Spath,
 
 inline
 void
-BoW::create_universal_gmm(int N_cent)
+BoW::create_universal_gmm(int N_cent, const string path_run_folders)
 { 
   
   cout << "Calculating Universal GMM " << endl;

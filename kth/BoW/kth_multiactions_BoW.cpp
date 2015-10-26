@@ -81,7 +81,7 @@ main(int argc, char** argv)
       
       BoW BofWords(single_path, multi_path, actionNames, co, ro, peo_train, peo_test, run);
       
-      BofWords.create_universal_gmm(N_cent); //Only One GMM for all scenarios
+      BofWords.create_universal_gmm(N_cent, path_run_folders); //Only One GMM for all scenarios
       //fisher_vector.features_testing();
       double n = timer.toc();
       cout << "number of seconds: " << n << endl;
