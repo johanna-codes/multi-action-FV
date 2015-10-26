@@ -1,6 +1,6 @@
 
 inline 
-fisher_vector::BoW(const string  in_Spath,
+BoW::BoW(const string  in_Spath,
 			 const string  in_Mpath,
 			 const string  in_actionNames, 
 			 const uword in_col, 
@@ -118,7 +118,6 @@ BoW::create_universal_gmm(int N_cent)
   
   
   int km_iter = 10;
-  int em_iter  = 5;
   double var_floor = 1e-10;
   bool print_mode = true;
   
