@@ -6,7 +6,7 @@ function bin = get_hist(data_onevideo,mu)
 hist = zeros(n_mu,1);
 
 for  i=1:n_vectors
-    i
+    
     one_vector = data_onevideo(:,i);
     
     prev_dist = inf;
@@ -27,3 +27,4 @@ for  i=1:n_vectors
 end
 
 save('probando.mat', 'hist');
+displ('Done');
