@@ -40,10 +40,7 @@ for r=1:RUN
                 %%Calcular aca el vector de Histograms y normalisar
                 
                 hist_n = get_hist(data_onevideo,mu);
-                pause
-     
-                
-                
+                   
                 save_name = strcat('./run', run,  '/Histograms_BoW/hist_', people_train(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
                 sSave = char(save_name);
                 display(sSave);

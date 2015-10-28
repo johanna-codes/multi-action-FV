@@ -1,7 +1,7 @@
-function bin = get_hist(data_onevideo,mu)
+function hist = get_hist(data_onevideo,mu)
 
-[dim n_mu] = size (mu)
-[dim2 n_vectors] =  size(data_onevideo)
+[dim n_mu] = size (mu);
+[dim2 n_vectors] =  size(data_onevideo);
 
 hist = zeros(n_mu,1);
 
@@ -26,5 +26,4 @@ for  i=1:n_vectors
     
 end
 
-save('probando.mat', 'hist');
-displ('Done');
+hist=hist/max(hist);
