@@ -26,7 +26,7 @@ for r=1:RUN
     par_for_name_feat = cell(num_iter,1);
     par_for_save_name = cell(num_iter,1);
     
-    k=1;
+    k = 1;
     for d=1:4
         
         sc = int2str(d);
@@ -39,6 +39,7 @@ for r=1:RUN
                 
                 par_for_name_feat{k,1} = name_feat;
                 par_for_save_name{k,1} = save_name;
+                k = k+1;
                 
             end
         end
