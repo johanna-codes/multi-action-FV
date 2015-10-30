@@ -57,7 +57,7 @@ parfor p=1:num_iter
     
     
     sSave = char(save_name);
-    display(sSave);
+    %display(sSave);
     my_parsave(sSave, hist_n);
     
 end
