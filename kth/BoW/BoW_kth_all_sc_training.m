@@ -15,21 +15,64 @@ for r=1:RUN
     fprintf('RUN %s \n',run);
     
     mu =    load(strcat('./run', run, '/visual_vocabulary/means_Ng'  , Ng, '_dim', dim,  '_all_sc.dat'));
-   
+    people_train = importdata(strcat(path_run_folders,'/run', run, '/rand_selection_run', run, '.dat'));
+    actionNames = importdata('actionNames.txt');
+    people_train = people_train(1:16);   
+    n_people  = length(people_train);
+    n_actions = length(actionNames);
     
+    num_iter = 4*n_people*n_actions;
+    %par_for_variables= cell(num_iter,2); %(name_feat,save_name);
+    par_for_name_feat = cell(num_iter,1); 
+    par_for_save_name = cell(num_iter,1); 
+    
+    k=1;
+      for d=1:4
+        
+        sc = int2str(d);
+        
+   
+        for i=1:n_people
+            for j=1:n_actions
+                name_feat = strcat(path_run_folders,'/features_all_nor/feat_vec_', people_train{i},'_',actionNames{j},'_d', sc);
+                save_name = strcat('./run', run,  '/Histograms_BoW/hist_', people_train(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.h5');
+
+                par_for_name_feat{k,1} = name_feat;
+                par_for_save_name{k,1} = save_name;
+                
+            end
+        end
+      end
+    
+    
+      %Hacer Aca el parfor
+      
+      parfor p=1:num_iter
+          name_feat = par_for_name_feat{p,1};
+          save_name = par_for_save_name{p,1};
+          
+          S = char(name_feat);
+          data_onevideo = load(S);
+          hist_n = get_hist(data_onevideo,mu);
+          
+
+          sSave = char(save_name);
+          display(sSave);
+          my_parsave(sSave, hist_n);
+
+      end
+      
+          
+          
+      end
+      
     for d=1:4
         
         sc = int2str(d);
-        people_train = importdata(strcat(path_run_folders,'/run', run, '/rand_selection_run', run, '.dat'));
-        actionNames = importdata('actionNames.txt');
-        people_train = people_train(1:16);
         
-        
-        n_people  = length(people_train);
-        n_actions = length(actionNames);
-        
+   
         for i=1:n_people
-            for j=1:n_actions
+            parfor j=1:n_actions
                 name_feat = strcat(path_run_folders,'/features_all_nor/feat_vec_', people_train{i},'_',actionNames{j},'_d', sc);
                 
                 S = char(name_feat);
@@ -41,12 +84,14 @@ for r=1:RUN
                 
                 hist_n = get_hist(data_onevideo,mu);
                    
-                save_name = strcat('./run', run,  '/Histograms_BoW/hist_', people_train(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.txt');
+                save_name = strcat('./run', run,  '/Histograms_BoW/hist_', people_train(i),'_',actionNames(j),'_sc', sc, '_Ng', Ng, '.h5');
                 sSave = char(save_name);
                 display(sSave);
-                fid1=fopen(sSave,'wt');
-                fprintf(fid1,'%8.8f\n',hist_n);
-                fclose(fid1);
+                my_parsave(sSave, hist_n);
+                
+                %fid1=fopen(sSave,'wt');
+                %fprintf(fid1,'%8.8f\n',hist_n);
+                %fclose(fid1);
             end
             
         end
