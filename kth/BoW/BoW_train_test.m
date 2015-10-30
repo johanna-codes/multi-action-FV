@@ -27,7 +27,9 @@ dim = int2str(DIM);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Precalculate Histogram fortraining set
 % display('Precaculating Histograms')
-% BoW_kth_all_sc_training(Ncent, RUN,DIM);
+%for r =1:RUN
+% BoW_kth_all_sc_training(Ncent, r,DIM); %It runs in parallel
+%end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 path_run_folders = '/home/johanna/codes/codes-git/multi-action-FV/trunk/kth';
 
