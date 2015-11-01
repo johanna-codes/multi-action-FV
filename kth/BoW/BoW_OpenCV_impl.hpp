@@ -214,8 +214,7 @@ BoW::create_histograms(const string path_run_folders)
 	 matcher->add(std::vector<cv::Mat>(1, dictionary));
 	 
 	 cout << "Dictionary loaded" << endl;
-	 getchar();
-
+	 
 	 // matches
 	 std::vector<cv::DMatch> matches;	 
 	 cout << "Matches" << endl;
@@ -224,7 +223,7 @@ BoW::create_histograms(const string path_run_folders)
 	 cout << "Matcher???" << endl;
 	 
 	 
-	 cout << matches[150].trainIdx << endl;
+	 //cout << matches[150].trainIdx << endl;
     
     //Crear el histograma y guardarlo
     
