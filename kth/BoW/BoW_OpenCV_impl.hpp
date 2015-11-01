@@ -199,6 +199,7 @@ BoW::create_histograms(const string path_run_folders)
 	 cout << ssName_feat_video.str() << endl;
 	 ssName_feat_video << path_run_folders <<"/features_all_nor/feat_vec_" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
 	 mat_features_video_i.load( ssName_feat_video.str() );
+	 getchar();
 	 
 	 
 	 
