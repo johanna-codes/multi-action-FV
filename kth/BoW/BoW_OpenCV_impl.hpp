@@ -147,7 +147,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   //store the vocabulary
   cv::FileStorage fs("dictionary.yml", cv::FileStorage::WRITE);
   fs << "vocabulary" << dictionary;
-  fs.release()
+  fs.release();
   
   
   
