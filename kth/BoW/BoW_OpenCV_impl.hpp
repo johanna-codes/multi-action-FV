@@ -181,6 +181,7 @@ BoW::create_histograms(const string path_run_folders)
     cv::FileStorage fs(name_vocabulary.str(), cv::FileStorage::READ);
     fs["vocabulary"] >> dictionary;
     fs.release();    
+    cout << "Loaded" << endl;
 
     
     
