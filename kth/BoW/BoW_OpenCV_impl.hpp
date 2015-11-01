@@ -178,7 +178,7 @@ BoW::create_histograms(const string path_run_folders)
     cv::Mat dictionary; 
     std::stringstream name_vocabulary;
     name_vocabulary << "./run"<< run <<"/visual_vocabulary/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".yml"; 
-    FileStorage fs(name_vocabulary.str(), FileStorage::READ);
+    cv::FileStorage fs(name_vocabulary.str(), cv::FileStorage::READ);
     fs["vocabulary"] >> dictionary;
     fs.release();    
 
