@@ -109,7 +109,13 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   
   cout << "Create Vocabulary" << endl; 
   
-  cv::Mat featuresUnclustered(uni_features.n_rows, dim, CV_32FC1, uni_features );
+  fmat f_uni_features = conv_to< fmat >::from(uni_features);
+  uni_features.reset();
+  
+  
+  cv::Mat featuresUnclusteredTMP(dim, f_uni_features.n_rows, CV_32FC1, f_uni_features.memptr() );
+  
+  cv::Mat featuresUnclustered( featuresUnclusteredTMP.t() );
   
   int rows = featuresUnclustered.rows;
   int cols = featuresUnclustered.cols;
