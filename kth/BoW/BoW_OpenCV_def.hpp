@@ -14,7 +14,7 @@ public:
     
 
     inline void create_vocabulary(int N_cent, const string path_run_folders);
-    inline void create_histograms(const string path_run_folders);
+    inline void create_histograms(int N_cent, const string path_run_folders);
 
     
     
@@ -30,7 +30,7 @@ private:
   
   int dim;
   int N_data;
-  int N_cent;
+  //int N_cent;
   mat mat_features;
   field<string> actions;
   

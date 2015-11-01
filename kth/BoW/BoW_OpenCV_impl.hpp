@@ -177,7 +177,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
 
 inline
 void
-BoW::create_histograms(const string path_run_folders) 
+BoW::create_histograms(int N_cent, const string path_run_folders) 
 {
   
   //Hacer para todas las personas, luego en la parte de entrenamiento no se usan todos
