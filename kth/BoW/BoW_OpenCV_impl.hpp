@@ -220,7 +220,7 @@ BoW::create_histograms(const string path_run_folders)
 	 std::vector<cv::DMatch> matches;	 
 	 cout << "Matches" << endl;
 
-	 matcher->match(features_video_i_OpenCV.row[0],matches);
+	 matcher->match(features_video_i_OpenCV,matches);
 	 cout << "Matcher???" << endl;
 	 
 	 
