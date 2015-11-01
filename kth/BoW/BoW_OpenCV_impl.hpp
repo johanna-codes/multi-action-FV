@@ -191,7 +191,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
     cv::FileStorage fs(name_vocabulary.str(), cv::FileStorage::READ);
     fs["vocabulary"] >> dictionary;
     fs.release();    
-    cout << "Loaded" << endl;
+    //cout << "Loaded" << endl;
 
     
     int rows_dic = dictionary.rows;
@@ -211,7 +211,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 std::stringstream ssName_feat_video;
 	 //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
 	 ssName_feat_video << path_run_folders <<"/features_all_nor/feat_vec_" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
-	 cout << ssName_feat_video.str() << endl;
+	 //cout << ssName_feat_video.str() << endl;
 
 	 mat_features_video_i.load( ssName_feat_video.str() );
 	 
@@ -225,7 +225,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 int rows = features_video_i_OpenCV.rows;
 	 int cols = features_video_i_OpenCV.cols;
 	 
-	 //cout << "OpenCV rows & cols " << rows << " & " << cols << endl;
+	 cout << "Features rows & cols " << rows << " & " << cols << endl;
 	 
 	 
 	 // init the matcher with you pre-trained codebook
