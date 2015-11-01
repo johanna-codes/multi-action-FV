@@ -162,7 +162,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
 
 
 
-
+/*
 
 inline
 void
@@ -226,4 +226,4 @@ BoW::create_histograms()
  
 
   
-}
+}*/
