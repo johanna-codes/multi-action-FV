@@ -201,10 +201,12 @@ BoW::create_histograms(const string path_run_folders)
 
 	 mat_features_video_i.load( ssName_feat_video.str() );
 	 cv::Mat features_video_i_OpenCV(mat_features_video_i.n_cols, dim, CV_32FC1, mat_features_video_i.memptr() );
+	 
+	  fmat f_features_video_i_OpenCV = conv_to< fmat >::from(features_video_i_OpenCV);
 
 	 
-	 int rows = features_video_i_OpenCV.rows;
-	 int cols = features_video_i_OpenCV.cols;
+	 int rows = f_features_video_i_OpenCV.rows;
+	 int cols = f_features_video_i_OpenCV.cols;
 	 
 	 cout << "OpenCV rows & cols " << rows << " & " << cols << endl;
 	 
@@ -219,7 +221,7 @@ BoW::create_histograms(const string path_run_folders)
 	 std::vector<cv::DMatch> matches;	 
 	 cout << "Matches" << endl;
 
-	 matcher->match(features_video_i_OpenCV,matches);
+	 matcher->match(f_features_video_i_OpenCV,matches);
 	 cout << "Matcher???" << endl;
 	 
 	 
