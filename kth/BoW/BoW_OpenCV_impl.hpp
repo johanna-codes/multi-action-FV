@@ -135,15 +135,15 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   int dictionarySize = N_cent;
   
   //define Term Criteria
-  TermCriteria tc(CV_TERMCRIT_ITER,100,0.001);
+  cv::TermCriteria tc(CV_TERMCRIT_ITER,100,0.001);
   //retries number
   int retries=1;
   //necessary flags
   int flags=KMEANS_PP_CENTERS;
   //Create the BoW (or BoF) trainer
-  BOWKMeansTrainer bowTrainer(dictionarySize,tc,retries,flags);
+  cv::BOWKMeansTrainer bowTrainer(dictionarySize,tc,retries,flags);
   //cluster the feature vectors
-  Mat dictionary = bowTrainer.cluster(featuresUnclustered);    
+  cv::Mat dictionary = bowTrainer.cluster(featuresUnclustered);    
   //store the vocabulary
   FileStorage fs("dictionary.yml", FileStorage::WRITE);
   fs << "vocabulary" << dictionary;
