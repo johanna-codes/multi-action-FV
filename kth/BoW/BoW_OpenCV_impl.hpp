@@ -150,14 +150,13 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   //cluster the feature vectors
   cv::Mat dictionary = bowTrainer.cluster(featuresUnclustered);    
   //store the vocabulary
-  cv::FileStorage fs("dictionary.yml", cv::FileStorage::WRITE);
+  std::stringstream name_vocabulary;
+  name_vocabulary << "./run"<< run <<"/visual_vocabulary/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".yml"; 
+  
+  cv::FileStorage fs(name_vocabulary.str(), cv::FileStorage::WRITE);
   fs << "vocabulary" << dictionary;
   fs.release();
   cout << "DONE"<< endl;
-  
-  
-  
-  
 
 }
 
@@ -165,3 +164,66 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
 
 
 
+inline
+void
+BoW::create_histograms() 
+{
+  
+  
+    //Step 2 - Obtain the BoF descriptor for given image/video frame. 
+
+    //prepare BOW descriptor extractor from the dictionary    
+    cv::Mat dictionary; 
+    std::stringstream name_vocabulary;
+    name_vocabulary << "./run"<< run <<"/visual_vocabulary/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".yml"; 
+    FileStorage fs(name_vocabulary.str(), FileStorage::READ);
+    fs["vocabulary"] >> dictionary;
+    fs.release();    
+    
+    
+    
+    //create a nearest neighbor matcher
+    Ptr<DescriptorMatcher> matcher(new FlannBasedMatcher);
+    //create Sift feature point extracter
+    Ptr<FeatureDetector> detector(new SiftFeatureDetector());
+    //create Sift descriptor extractor
+    Ptr<DescriptorExtractor> extractor(new SiftDescriptorExtractor);    
+    //create BoF (or BoW) descriptor extractor
+    BOWImgDescriptorExtractor bowDE(extractor,matcher);
+    //Set the dictionary with the vocabulary we created in the first step
+    bowDE.setVocabulary(dictionary);
+ 
+    //To store the image file name
+    char * filename = new char[100];
+    //To store the image tag name - only for save the descriptor in a file
+    char * imageTag = new char[10];
+ 
+    //open the file to write the resultant descriptor
+    FileStorage fs1("descriptor.yml", FileStorage::WRITE);    
+    
+    //the image file with the location. change it according to your image file location
+    sprintf(filename,"G:\\testimages\\image\\1.jpg");        
+    //read the image
+    Mat img=imread(filename,CV_LOAD_IMAGE_GRAYSCALE);        
+    //To store the keypoints that will be extracted by SIFT
+    vector<KeyPoint> keypoints;        
+    //Detect SIFT keypoints (or feature points)
+    detector->detect(img,keypoints);
+    //To store the BoW (or BoF) representation of the image
+    Mat bowDescriptor;        
+    //extract BoW (or BoF) descriptor from given image
+    bowDE.compute(img,keypoints,bowDescriptor);
+ 
+    //prepare the yml (some what similar to xml) file
+    sprintf(imageTag,"img1");            
+    //write the new BoF descriptor to the file
+    fs1 << imageTag << bowDescriptor;        
+ 
+    //You may use this descriptor for classifying the image.
+            
+    //release the file storage
+    fs1.release();
+ 
+
+  
+}
