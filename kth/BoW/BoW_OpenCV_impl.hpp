@@ -57,7 +57,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
     }
     
     cout << "mat_features_tmp.n_cols "<< mat_features_tmp.n_cols << endl;   
-    const uword N_max = 100000*4;  // 4 sc. maximum number of vectors per action to create universal GMM
+    const uword N_max = 100000;  // maximum number of vectors per action to create universal GMM
     //const uword N_max = 100000; //???
     if (mat_features_tmp.n_cols > N_max)
     {
@@ -126,6 +126,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   
   cout << f_uni_features.col(1000) << endl;
   cout << uni_features.col(1000) << endl;
+  cout << featuresUnclusteredTMP.row(1000) << endl;
   cout << featuresUnclustered.row(1000) << endl;
   
   cout << "Press a Key" << endl;
