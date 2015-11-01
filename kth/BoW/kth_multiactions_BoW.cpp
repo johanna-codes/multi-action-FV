@@ -9,8 +9,8 @@
 using namespace std;
 using namespace arma;
 
-#include "BoW_def.hpp"
-#include "BoW_impl.hpp"
+#include "BoW_OpenCV_def.hpp"
+#include "BoW_OpenCV_impl.hpp"
 
 
 
