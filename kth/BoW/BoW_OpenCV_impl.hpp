@@ -184,6 +184,10 @@ BoW::create_histograms(const string path_run_folders)
     cout << "Loaded" << endl;
 
     
+    int rows_dic = dictionary.rows;
+    int cols_dic = dictionary.cols;
+    cout << "OpenCV Dict rows & cols " << rows_dic << " & " << cols_dic << endl;
+	 
     
     
     
