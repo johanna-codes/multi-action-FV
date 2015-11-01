@@ -217,8 +217,12 @@ BoW::create_histograms(const string path_run_folders)
 	 getchar();
 
 	 // matches
-	 std::vector<cv::DMatch> matches;
+	 std::vector<cv::DMatch> matches;	 
+	 cout << "Matches" << endl;
+
 	 matcher->match(features_video_i_OpenCV,matches);
+	 cout << "Matcher???" << endl;
+	 
 	 
 	 cout << matches[150].trainIdx << endl;
     
