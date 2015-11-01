@@ -241,6 +241,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
 	 
 	 
+	 cout << matches.size() << endl;
 	 cout << matches[150].trainIdx << endl;
 	 
 	 getchar();
