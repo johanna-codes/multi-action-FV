@@ -14,6 +14,7 @@ public:
     
 
     inline void create_vocabulary(int N_cent, const string path_run_folders);
+    inline void create_histograms(const string path_run_folders);
 
     
     

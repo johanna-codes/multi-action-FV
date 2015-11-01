@@ -81,10 +81,14 @@ main(int argc, char** argv)
       
       BoW BofWords(single_path, multi_path, actionNames, co, ro, peo_train, peo_test, run);
       
-      BofWords.create_vocabulary(N_cent, path_run_folders); //Only One GMM for all scenarios
-      //fisher_vector.features_testing();
+      //BofWords.create_vocabulary(N_cent, path_run_folders); //Only One GMM for all scenarios
+      BofWords.create_histograms(path_run_folders);
+      
       double n = timer.toc();
       cout << "number of seconds: " << n << endl;
+      cout << "Press a Key" << endl;
+      getchar();
+      
   }
   
   
