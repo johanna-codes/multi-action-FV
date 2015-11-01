@@ -139,7 +139,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   //retries number
   int retries=1;
   //necessary flags
-  int flags=KMEANS_PP_CENTERS;
+  int flags=cv::KMEANS_PP_CENTERS;
   //Create the BoW (or BoF) trainer
   cv::BOWKMeansTrainer bowTrainer(dictionarySize,tc,retries,flags);
   //cluster the feature vectors
