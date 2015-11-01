@@ -1,4 +1,6 @@
 //Taken from: http://www.codeproject.com/Articles/619039/Bag-of-Features-Descriptor-on-SIFT-Features-with-O
+//http://stackoverflow.com/questions/15611872/bow-in-opencv-using-precomputed-features
+    
 inline 
 BoW::BoW(const string  in_Spath,
 			 const string  in_Mpath,
@@ -162,14 +164,14 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
 
 
 
-/*
+
 
 inline
 void
 BoW::create_histograms() 
 {
   
-  
+  //Hacer para todas las personas, luego en la parte de entrenamiento no se usan todos
     //Step 2 - Obtain the BoF descriptor for given image/video frame. 
 
     //prepare BOW descriptor extractor from the dictionary    
@@ -179,51 +181,46 @@ BoW::create_histograms()
     FileStorage fs(name_vocabulary.str(), FileStorage::READ);
     fs["vocabulary"] >> dictionary;
     fs.release();    
+
     
     
     
-    //create a nearest neighbor matcher
-    Ptr<DescriptorMatcher> matcher(new FlannBasedMatcher);
-    //create Sift feature point extracter
-    Ptr<FeatureDetector> detector(new SiftFeatureDetector());
-    //create Sift descriptor extractor
-    Ptr<DescriptorExtractor> extractor(new SiftDescriptorExtractor);    
-    //create BoF (or BoW) descriptor extractor
-    BOWImgDescriptorExtractor bowDE(extractor,matcher);
-    //Set the dictionary with the vocabulary we created in the first step
-    bowDE.setVocabulary(dictionary);
- 
-    //To store the image file name
-    char * filename = new char[100];
-    //To store the image tag name - only for save the descriptor in a file
-    char * imageTag = new char[10];
- 
-    //open the file to write the resultant descriptor
-    FileStorage fs1("descriptor.yml", FileStorage::WRITE);    
     
-    //the image file with the location. change it according to your image file location
-    sprintf(filename,"G:\\testimages\\image\\1.jpg");        
-    //read the image
-    Mat img=imread(filename,CV_LOAD_IMAGE_GRAYSCALE);        
-    //To store the keypoints that will be extracted by SIFT
-    vector<KeyPoint> keypoints;        
-    //Detect SIFT keypoints (or feature points)
-    detector->detect(img,keypoints);
-    //To store the BoW (or BoF) representation of the image
-    Mat bowDescriptor;        
-    //extract BoW (or BoF) descriptor from given image
-    bowDE.compute(img,keypoints,bowDescriptor);
- 
-    //prepare the yml (some what similar to xml) file
-    sprintf(imageTag,"img1");            
-    //write the new BoF descriptor to the file
-    fs1 << imageTag << bowDescriptor;        
- 
-    //You may use this descriptor for classifying the image.
-            
-    //release the file storage
-    fs1.release();
+   for (uword pe=0; pe<peo_train.n_rows; ++pe)    
+   {
+     for (uword act = 0 ; act < actions.n_rows;  ++act) {
+       
+       for (uword sc = 1 ; sc <= 4;  ++sc) { 
+	 
+	 mat mat_features_video_i;
+	 std::stringstream ssName_feat_video;
+	 //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
+	 ssName_feat_video << path_run_folders <<"/features_all_nor/feat_vec_" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
+	 mat_features_video_i.load( ssName_feat_video.str() );
+	 
+	 
+	 
+	 cv::Mat features_video_i_OpenCV(mat_features_video_i.n_cols, dim, CV_32FC1, mat_features_video_i.memptr() );
+	 
+	 // init the matcher with you pre-trained codebook
+	 cv::Ptr<cv::DescriptorMatcher > matcher = new cv::BFMatcher(cv::NORM_L2);
+	 matcher->add(std::vector<cv::Mat>(1, dictionary));
+	 // matches
+	 std::vector<cv::DMatch> matches;
+	 matcher->match(features_video_i_OpenCV,matches);
+	 
+	 cout << matches[150].trainIdx << endl;
+    
+    //Crear el histograma y guardarlo
+    
+       }
+     }
+   }
+    
+    
+    
+
  
 
   
-}*/
+}
