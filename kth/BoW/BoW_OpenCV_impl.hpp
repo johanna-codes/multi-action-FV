@@ -200,11 +200,15 @@ BoW::create_histograms(const string path_run_folders)
 	 cout << ssName_feat_video.str() << endl;
 
 	 mat_features_video_i.load( ssName_feat_video.str() );
-	 getchar();
-	 
-	 
-	 
 	 cv::Mat features_video_i_OpenCV(mat_features_video_i.n_cols, dim, CV_32FC1, mat_features_video_i.memptr() );
+
+	 
+	 int rows = features_video_i_OpenCV.rows;
+	 int cols = features_video_i_OpenCV.cols;
+	 
+	 cout << "OpenCV rows & cols " << rows << " & " << cols << endl;
+  	 getchar();
+	 
 	 
 	 // init the matcher with you pre-trained codebook
 	 cv::Ptr<cv::DescriptorMatcher > matcher = new cv::BFMatcher(cv::NORM_L2);
