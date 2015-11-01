@@ -225,26 +225,25 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 int rows = features_video_i_OpenCV.rows;
 	 int cols = features_video_i_OpenCV.cols;
 	 
-	 cout << "OpenCV rows & cols " << rows << " & " << cols << endl;
+	 //cout << "OpenCV rows & cols " << rows << " & " << cols << endl;
 	 
 	 
 	 // init the matcher with you pre-trained codebook
 	 cv::Ptr<cv::DescriptorMatcher > matcher = new cv::BFMatcher(cv::NORM_L2);
 	 matcher->add(std::vector<cv::Mat>(1, dictionary));
 	 
-	 cout << "Dictionary loaded" << endl;
 	 
 	 // matches
 	 std::vector<cv::DMatch> matches;	 
-	 cout << "Matches" << endl;
 
 	 matcher->match(features_video_i_OpenCV,matches);
-	 cout << "Matcher???" << endl;
 	 
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
 	 
 	 
-	 //cout << matches[150].trainIdx << endl;
+	 cout << matches[150].trainIdx << endl;
+	 
+	 getchar();
     
     //Crear el histograma y guardarlo
     
