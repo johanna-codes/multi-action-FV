@@ -121,12 +121,17 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   int cols = featuresUnclustered.cols;
   
   cout << "OpenCV rows & cols " << rows << " & " << cols << endl;
+  cout << "Press a Key" << endl;
   getchar();
   
+  cout << f_uni_features.col(1000) << endl;
+  cout << uni_features.col(1000) << endl;
+  cout << featuresUnclustered.row(1000) << endl;
   
-
-
+  cout << "Press a Key" << endl;
+  getchar();
   
+   
   
   
   
