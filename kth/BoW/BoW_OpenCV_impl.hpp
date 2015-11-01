@@ -202,9 +202,10 @@ BoW::create_histograms(const string path_run_folders)
 	 mat_features_video_i.load( ssName_feat_video.str() );
 	 
 	 fmat f_mat_features_video_i = conv_to< fmat >::from(mat_features_video_i);
+	 mat_features_video_i.reset();
 	 
 	 
-	 cv::Mat features_video_i_OpenCV(mat_features_video_i.n_cols, dim, CV_32FC1, f_mat_features_video_i.memptr() );
+	 cv::Mat features_video_i_OpenCV(f_mat_features_video_i.n_cols, dim, CV_32FC1, f_mat_features_video_i.memptr() );
 
 	 
 	 int rows = features_video_i_OpenCV.rows;
