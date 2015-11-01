@@ -110,7 +110,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   cout << "Create Vocabulary" << endl; 
   
   fmat f_uni_features = conv_to< fmat >::from(uni_features);
-  uni_features.reset();
+  //uni_features.reset();
   
   
   cv::Mat featuresUnclusteredTMP(dim, f_uni_features.n_cols, CV_32FC1, f_uni_features.memptr() );
