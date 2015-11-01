@@ -113,9 +113,9 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   //uni_features.reset();
   
   
-  cv::Mat featuresUnclusteredTMP(dim, f_uni_features.n_cols, CV_32FC1, f_uni_features.memptr() );
+  cv::Mat featuresUnclustered(f_uni_features.n_cols, dim, CV_32FC1, f_uni_features.memptr() );
   
-  cv::Mat featuresUnclustered( featuresUnclusteredTMP.t() );
+  //cv::Mat featuresUnclustered( featuresUnclusteredTMP.t() );
   
   int rows = featuresUnclustered.rows;
   int cols = featuresUnclustered.cols;
@@ -126,7 +126,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   
   cout << f_uni_features.col(1000) << endl;
   cout << uni_features.col(1000) << endl;
-  cout << featuresUnclusteredTMP.row(1000) << endl;
+  //cout << featuresUnclusteredTMP.row(1000) << endl;
   cout << featuresUnclustered.row(1000) << endl;
   
   cout << "Press a Key" << endl;
