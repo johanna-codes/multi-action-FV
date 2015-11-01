@@ -150,7 +150,16 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   //Create the BoW (or BoF) trainer
   cv::BOWKMeansTrainer bowTrainer(dictionarySize,tc,retries,flags);
   //cluster the feature vectors
-  cv::Mat dictionary = bowTrainer.cluster(featuresUnclustered);    
+  cv::Mat dictionary = bowTrainer.cluster(featuresUnclustered);  
+
+  //Displaying # of Rows&Cols
+  int rows_dic = dictionary.rows;
+  int cols_dic = dictionary.cols;
+  cout << "OpenCV Dict rows & cols " << rows_dic << " & " << cols_dic << endl;
+    
+    
+    
+    
   //store the vocabulary
   std::stringstream name_vocabulary;
   name_vocabulary << "./run"<< run <<"/visual_vocabulary/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".yml"; 
@@ -230,6 +239,8 @@ BoW::create_histograms(const string path_run_folders)
 
 	 matcher->match(features_video_i_OpenCV,matches);
 	 cout << "Matcher???" << endl;
+	 
+	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
 	 
 	 
 	 //cout << matches[150].trainIdx << endl;
