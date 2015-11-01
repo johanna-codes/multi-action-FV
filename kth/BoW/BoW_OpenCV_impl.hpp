@@ -145,7 +145,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   //cluster the feature vectors
   cv::Mat dictionary = bowTrainer.cluster(featuresUnclustered);    
   //store the vocabulary
-  FileStorage fs("dictionary.yml", FileStorage::WRITE);
+  cv::FileStorage fs("dictionary.yml", FileStorage::WRITE);
   fs << "vocabulary" << dictionary;
   fs.release()
   
