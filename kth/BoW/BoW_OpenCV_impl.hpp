@@ -285,7 +285,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
        //Loading matrix with all features (for all frames)
        std::stringstream ssName_feat_video;
        //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
-       ssName_feat_video << path_run_folders << "/run" << run <<  "/multi_features/feat_" << peo_test(pe) "_d" << sc << ".dat";
+       ssName_feat_video << path_run_folders << "/run" << run <<  "/multi_features/feat_" << peo_test(pe) << "_d" << sc << ".dat";
        multi_features.load( ssName_feat_video.str() );
        
         //Loading labels. In a frame basis
