@@ -397,7 +397,7 @@ BoW::train_svm(int N_cent, const string path_run_folders)
    
    std::stringstream ssName_svm;
    
-   ssName_svm <<  "./run"<<run << "svm_model_Ng" << Ncent;
+   ssName_svm <<  "./run"<<run << "svm_model_Ng" << N_cent;
    
    svm.save( ssName_svm.str() );
    
