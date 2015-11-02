@@ -240,7 +240,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 matcher->match(features_video_i_OpenCV,matches);
 	 
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
-	hist.zeros(rows) ;
+	hist.zeros(cols) ;
 	 
 	 for (int i=0; i<rows; ++i)
 	 {
