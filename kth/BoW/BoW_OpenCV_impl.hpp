@@ -302,7 +302,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
         fr_idx.load( ssload_name_fr_idx.str() );  // Solo uso las pares: 2,4,6...
         fr_idx_2 = fr_idx/2; // Empieza en uno
         
-        cout << fr_idx_2 << endl;
+        cout << fr_idx_2.t() << endl;
 	
 	cout << fr_idx_2(0) << endl;
 	getchar();
