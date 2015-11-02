@@ -249,6 +249,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	   
 	 }
 	 
+	 cout << hist.t() << endl;
 	 cout << "Max & Min " << hist.max() << " & " << hist.min() << endl;
 // 	 cout << matches.size() << endl;
 // 	 cout << matches[150].trainIdx << endl;
