@@ -56,9 +56,10 @@ for d = 1:4
 
         for act = 1:n_actions
 
-            load_name = strcat('./run', run,  '/Histograms_BoW_OpenCV/hist_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.txt');
+            load_name = strcat('./run', run,  '/Histograms_BoW_OpenCV/hist_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.h5');
             sLoad = char(load_name);
-            FV = load(sLoad);
+            hinfo = hdf5info(sLoad);
+            FV = hdf5read(hinfo.GroupHierarchy.Datasets(1));
             data_train = [data_train FV];
             labels_train = [labels_train (act - 1)]; % labels starts at 0
 
