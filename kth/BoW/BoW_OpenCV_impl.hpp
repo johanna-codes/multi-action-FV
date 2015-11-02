@@ -244,21 +244,28 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 
 	 for (int i=0; i<rows; ++i)
 	 {
-	   cout <<  matches[i].trainIdx << " " ;
+	   //cout <<  matches[i].trainIdx << " " ;
 	   int bin =  matches[i].trainIdx ;
 	   hist(bin)++;
 	   
 	   
 	 }
 	 
-	 getchar();
+	 //getchar();
 	 //cout << hist.t() << endl;
 	 hist = hist/hist.max();
-	 cout << "Max & Min " << hist.max() << " & " << hist.min() << endl;
+	 std::stringstream ssName_hist;
+	 //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
+	 ssName_hist << "./run " << run "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) << "_d" << sc << '_Ng'<< Ncent <<'.h5';
+	 
+	 hist.save(ssName_hist.str(), hdf5_binary);
+	
+	 
+	 //cout << "Max & Min " << hist.max() << " & " << hist.min() << endl;
 // 	 cout << matches.size() << endl;
 // 	 cout << matches[150].trainIdx << endl;
 	 
-	 getchar();
+	 //getchar();
     
     //Crear el histograma y guardarlo
     
