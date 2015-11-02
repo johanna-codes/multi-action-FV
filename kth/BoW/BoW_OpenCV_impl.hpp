@@ -242,9 +242,9 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 
 	 cout << matches.size() << endl;
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
-	hist.zeros(cols) ;
+	hist.zeros(N_cent) ;
 	 
-	 for (int i=0; i<rows; ++i)
+	 for (int i=0; i< matches.size(); ++i)
 	 {
 	   //cout <<  matches[i].trainIdx << " " ;
 	   int bin =  matches[i].trainIdx ;
