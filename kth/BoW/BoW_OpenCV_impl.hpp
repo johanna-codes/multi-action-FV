@@ -257,7 +257,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 std::stringstream ssName_hist;
 
 
-	 ssName_hist << "./run" << run "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) << "_d" << sc << "_Ng"<< Ncent << ".h5";
+	 ssName_hist << "./run"<<run << "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) << "_d" << sc << "_Ng"<< Ncent << ".h5";
 	 
 	 hist.save(ssName_hist.str(), hdf5_binary);
 	
