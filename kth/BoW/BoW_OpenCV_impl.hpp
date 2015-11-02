@@ -299,7 +299,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
        std::stringstream ssload_name_fr_idx;
        
         ssload_name_fr_idx << path_run_folders << "/run" << run <<  "/multi_features/fr_idx_" << peo_test(pe) << "_d" <<  sc << ".dat";
-        fr_idx.load( sLoad_fr_idx.str() );  // Solo uso las pares: 2,4,6...
+        fr_idx.load( ssload_name_fr_idx.str() );  // Solo uso las pares: 2,4,6...
         fr_idx_2 = fr_idx/2; // Empieza en uno
         
         cout << fr_idx_2 << endl;
