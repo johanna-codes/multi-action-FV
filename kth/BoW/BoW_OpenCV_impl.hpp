@@ -196,7 +196,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
     
     int rows_dic = dictionary.rows;
     int cols_dic = dictionary.cols;
-    cout << "OpenCV Dict rows & cols " << rows_dic << " & " << cols_dic << endl;
+    //cout << "OpenCV Dict rows & cols " << rows_dic << " & " << cols_dic << endl;
 	 
     vec hist;
     
@@ -226,7 +226,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 int rows = features_video_i_OpenCV.rows;
 	 int cols = features_video_i_OpenCV.cols;
 	 
-	 cout << "Features rows & cols " << rows << " & " << cols << endl;
+	 //cout << "Features rows & cols " << rows << " & " << cols << endl;
 	 
 	 
 	 // init the matcher with you pre-trained codebook
