@@ -113,12 +113,6 @@ for d = 1:sc
     for pe = 1:n_pe_te
         %display('Loading data');
         
-        %Loading matrix with all features (for all frames)
-        %display(strcat(people_test(pe),'_d', sc));
-        load_name = strcat(path_run_folders, '/run', run,  '/multi_features/feat_', people_test(pe),'_d', sc, '.dat');
-        sLoad = char(load_name);
-        feat_video = load(sLoad);
-        
         %Loading labels. In a frame basis
         load_name_lab = strcat(path_run_folders,'/run', run,  '/multi_features/lab_', people_test(pe),'_d', sc, '.dat');
         sLoad_lab = char(load_name_lab);
@@ -136,11 +130,18 @@ for d = 1:sc
         display('Data loaded');
         
         for f=1:n_frames - L
-            %Aca cargar el histogram obtenido con OpenCV
             ini = f;
-            fin = ini + L;            
+            fin = ini + L;                    
+            %Aca cargar el histogram obtenido con OpenCV
+            load_name = strcat('./run', run , '/multi_Histograms_BoW_OpenCV/multi_hist_', peo_test(pe), '_d', sc, '_Ng', Ng, 'fr_', int2str(ini), '_', int2str(fin), '.h5');
+            sLoad = char(load_name);
+            hist_segment = load(sLoad);
+    
             prob_estimates = classify_segment(ini, fin, fr_idx_2, feat_video, mu, model  );
             n_rows = length(f:f+L);
+            lab = [ 1 ]; %%% OJO!!!!!!!!!!!!
+
+            [predicted_label, accuracy, prob_estimates] = svmpredict(double(lab'), double(hist_segment'), model, ['-b 1']);
             prob_frames(f:f + L,:)=prob_frames(f:f + L,:) + repmat(prob_estimates, [n_rows 1]);
         end
         
