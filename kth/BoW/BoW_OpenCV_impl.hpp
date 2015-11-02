@@ -275,7 +275,7 @@ void
 BoW::create_histograms_testing(int N_cent, const string path_run_folders, int segm_length) 
 {
   mat multi_features;
-  vec real_labels, vec fr_idx, fr_idx_2;
+  vec real_labels, fr_idx, fr_idx_2;
  
    for (uword sc = 1 ; sc <= 4;  ++sc) 
    { 
