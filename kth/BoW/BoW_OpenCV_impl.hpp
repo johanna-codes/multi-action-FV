@@ -254,7 +254,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 //getchar();
 	 //cout << hist.t() << endl;
 	 hist = hist/hist.max();
-	 cout << hist.n_elem() < endl;
+	 cout << hist.n_elem < endl;
 	 std::stringstream ssName_hist;
 
 
