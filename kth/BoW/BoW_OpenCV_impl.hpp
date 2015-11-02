@@ -254,30 +254,77 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 //getchar();
 	 //cout << hist.t() << endl;
 	 hist = hist/hist.max();
+	 cout << hist.n_elem() < endl;
 	 std::stringstream ssName_hist;
 
 
 	 ssName_hist << "./run"<<run << "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) << "_d" << sc << "_Ng"<< N_cent << ".h5";
 	 
 	 hist.save(ssName_hist.str(), hdf5_binary);
-	
+      }
+     }
+   }
+}
+
+inline
+void
+BoW::train_svm(int N_cent, const string path_run_folders)
+{
+  
+  
+  vec hist;
+  int k =0;
+  int n_samples = 4*actions.n_rows*peo_train.n_rows;
+  
+  mat training_data_hist(N_cent, n_samples); 
+  float fl_labels[n_samples] ;
+  
+   for (uword pe=0; pe<peo_train.n_rows; ++pe)    
+   {
+     for (uword act = 0 ; act < actions.n_rows;  ++act) 
+     {
+       for (uword sc = 1 ; sc <= 4;  ++sc) 
+       { 
 	 
-	 //cout << "Max & Min " << hist.max() << " & " << hist.min() << endl;
-// 	 cout << matches.size() << endl;
-// 	 cout << matches[150].trainIdx << endl;
+	 std::stringstream ssName_hist;
+
+	 ssName_hist << "./run"<<run << "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) << "_d" << sc << "_Ng"<< N_cent << ".h5";
 	 
-	 //getchar();
-    
-    //Crear el histograma y guardarlo
-    
+	 hist.load(ssName_hist.str(), hdf5_binary);
+	 
+	 training_data_hist.col(k) = hist;
+	 fl_labels[k] = act;
+	 k++;
+	 
        }
      }
    }
-    
-    
-    
+   
+   
+   fmat float_training_data_hist;
+   float_training_data_hist = conv_to< fmat >::from(training_data_hist);
+   training_data_hist.reset();
+   
+   cv::Mat cv_training_data_hist(float_training_data_hist.n_cols, dim, CV_32FC1, float_training_data_hist.memptr() );
+   cv::Mat cv_Labels(n_samples, 1, CV_32FC1,fl_labels );
 
- 
-
-  
+   float_training_data_hist.reset();
+   
+   cout << "Setting parameters" << endl;
+   // http://ttic.uchicago.edu/~mostajabi/Tutorial.html
+   
+   
+   CvSVMParams params;
+   params.kernel_type=CvSVM::RBF;
+   params.svm_type=CvSVM::C_SVC;
+   params.gamma=0.50625000000000009;
+   params.C=312.50000000000000;
+   params.term_crit=cvTermCriteria(CV_TERMCRIT_ITER,100,0.000001);
+   CvSVM svm;
+   
+   printf("%s\n","Training SVM classifier");
+   
+   bool res=svm.train(cv_training_data_hist,cv_Labels,cv::Mat(),cv::Mat(),params);
+   
+     
 }

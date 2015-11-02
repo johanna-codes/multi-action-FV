@@ -15,6 +15,7 @@ public:
 
     inline void create_vocabulary(int N_cent, const string path_run_folders);
     inline void create_histograms(int N_cent, const string path_run_folders);
+    inline void train_svm(int N_cent, const string path_run_folders);
 
     
     
