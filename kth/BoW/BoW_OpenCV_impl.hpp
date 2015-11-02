@@ -239,6 +239,8 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 
 	 matcher->match(features_video_i_OpenCV,matches);
 	 
+	 
+	 cout << matches.size() << endl;
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
 	hist.zeros(cols) ;
 	 

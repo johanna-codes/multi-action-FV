@@ -86,8 +86,8 @@ main(int argc, char** argv)
       
       double n = timer.toc();
       cout << "number of seconds: " << n << endl;
-      cout << "Press a Key" << endl;
-      getchar();
+      //cout << "Press a Key" << endl;
+      //getchar();
       
   }
   
