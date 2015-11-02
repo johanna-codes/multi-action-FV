@@ -198,14 +198,15 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
     int cols_dic = dictionary.cols;
     cout << "OpenCV Dict rows & cols " << rows_dic << " & " << cols_dic << endl;
 	 
-    
+    vec hist;
     
     
    for (uword pe=0; pe<peo_train.n_rows; ++pe)    
    {
-     for (uword act = 0 ; act < actions.n_rows;  ++act) {
-       
-       for (uword sc = 1 ; sc <= 4;  ++sc) { 
+     for (uword act = 0 ; act < actions.n_rows;  ++act) 
+     {
+       for (uword sc = 1 ; sc <= 4;  ++sc) 
+       { 
 	 
 	 mat mat_features_video_i;
 	 std::stringstream ssName_feat_video;
@@ -239,10 +240,18 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 matcher->match(features_video_i_OpenCV,matches);
 	 
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
+	hist.zeros(rows) ;
 	 
+	 for (int i=0; i<rows; ++i)
+	 {
+	   hist(i) =  matches[i].trainIdx ;
+	   
+	   
+	 }
 	 
-	 cout << matches.size() << endl;
-	 cout << matches[150].trainIdx << endl;
+	 cout << "Max & Min " << hist.max() << " & " << hist.min() << endl;
+// 	 cout << matches.size() << endl;
+// 	 cout << matches[150].trainIdx << endl;
 	 
 	 getchar();
     
