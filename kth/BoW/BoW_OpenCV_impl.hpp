@@ -226,7 +226,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 int rows = features_video_i_OpenCV.rows;
 	 int cols = features_video_i_OpenCV.cols;
 	 
-	 cout << "Features rows & cols " << rows << " & " << cols << endl;
+	 //cout << "Features rows & cols " << rows << " & " << cols << endl;
 	 
 	 
 	 // init the matcher with you pre-trained codebook
@@ -240,7 +240,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 	 matcher->match(features_video_i_OpenCV,matches);
 	 
 	 
-	 cout << matches.size() << endl;
+	//cout << matches.size() << endl;
 	 //Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
 	hist.zeros(N_cent) ;
 	 
