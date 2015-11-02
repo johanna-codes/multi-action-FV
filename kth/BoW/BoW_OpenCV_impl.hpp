@@ -370,7 +370,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
 
 	hist = hist/hist.max();
 	std::stringstream ssName_hist;
-	ssName_hist << "./run"<<run << "/multi_Histograms_BoW_OpenCV/multi_hist_" << peo_test(pe) << "_" << "_d" << sc << "_Ng"<< N_cent << "fr_" << ini << "_"  << fin  << ".h5";
+	ssName_hist << "./run"<<run << "/multi_Histograms_BoW_OpenCV/multi_hist_" << peo_test(pe) << "_d" << sc << "_Ng"<< N_cent << "fr_" << ini << "_"  << fin  << ".h5";
 	cout << ssName_hist.str() << endl;
 	hist.save(ssName_hist.str(), hdf5_binary);
       }
