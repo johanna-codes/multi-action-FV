@@ -13,7 +13,7 @@ addpath('/media/johanna/HD1T/Toolbox/yael/matlab');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %prompt = 'What is number of Gaussians?? ';
 %Ncent = input(prompt);
-Ncent = 256
+Ncent = 4000;
 prompt = 'What is segment length? ';
 L = input(prompt);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
