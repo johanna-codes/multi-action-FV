@@ -54,6 +54,7 @@ main(int argc, char** argv)
    
 
   
+  int segm_length = 25; //OJO!!!!!!!!!
   int RUN = 3;
   
   for (int run=1;run<=RUN; run++)
@@ -82,8 +83,7 @@ main(int argc, char** argv)
       BoW BofWords(single_path, multi_path, actionNames, co, ro, peo_train, peo_test, run);
       
       //BofWords.create_vocabulary(N_cent, path_run_folders); //Only One GMM for all scenarios
-      BofWords.create_histograms(N_cent, path_run_folders);
-      
+      BofWords.create_histograms_testing(N_cent, path_run_folders, segm_length);
       double n = timer.toc();
       cout << "number of seconds: " << n << endl;
       //cout << "Press a Key" << endl;

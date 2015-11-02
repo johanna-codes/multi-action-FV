@@ -27,9 +27,7 @@ dim = int2str(DIM);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Precalculate Histogram fortraining set
 % display('Precaculating Histograms')
-%for r =1:RUN
-% BoW_kth_all_sc_training(Ncent, r,DIM); %It runs in parallel
-%end
+%It was done in OpenCV. Saved as run##/Histograms_BoW_OpenCV
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 path_run_folders = '/home/johanna/codes/codes-git/multi-action-FV/trunk/kth';
 
@@ -58,7 +56,7 @@ for d = 1:4
 
         for act = 1:n_actions
 
-            load_name = strcat('./run', run,  'Histograms_BoW/hist_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.txt');
+            load_name = strcat('./run', run,  '/Histograms_BoW_OpenCV/hist_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.txt');
             sLoad = char(load_name);
             FV = load(sLoad);
             data_train = [data_train FV];
@@ -103,8 +101,6 @@ sLoad= char(load_name);
 load(sLoad);
 
 
-mu =    load(strcat('./run', run, '/visual_vocabulary/means_Ng'  , Ng, '_dim', dim,  '_all_sc.dat'));
-
 sc = 4; %Total # of scenarios
 ACC = [];
 
@@ -140,6 +136,7 @@ for d = 1:sc
         display('Data loaded');
         
         for f=1:n_frames - L
+            %Aca cargar el histogram obtenido con OpenCV
             ini = f;
             fin = ini + L;            
             prob_estimates = classify_segment(ini, fin, fr_idx_2, feat_video, mu, model  );

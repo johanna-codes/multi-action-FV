@@ -174,7 +174,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
 
 
 
-
+//Training
 inline
 void
 BoW::create_histograms(int N_cent, const string path_run_folders) 
@@ -268,6 +268,69 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
    }
 }
 
+
+//Training
+inline
+void
+BoW::create_histograms_testing(int N_cent, const string path_run_folders, int segm_length) 
+{
+  mat multi_features;
+  vec real_labels, vec fr_idx, fr_idx_2;
+ 
+   for (uword sc = 1 ; sc <= 4;  ++sc) 
+   { 
+     for (uword pe=0; pe<peo_test.n_rows; ++pe)    
+     {
+       
+       //Loading matrix with all features (for all frames)
+       std::stringstream ssName_feat_video;
+       //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
+       ssName_feat_video << path_run_folders << "/run" << run <<  "/multi_features/feat_" << peo_test(pe) "_d" << sc << ".dat";
+       multi_features.load( ssName_feat_video.str() );
+       
+        //Loading labels. In a frame basis
+       std::stringstream ssload_name_lab;       
+       ssload_name_lab << path_run_folders << "/run" << run <<  "/multi_features/lab_" << peo_test(pe) << "_d" << sc << ".dat";
+       real_labels.load( ssload_name_lab.str() );
+       int n_frames = real_labels.n_elem;
+       
+        //Loading frame index for each of the feature vector in feat_video
+
+       std::stringstream ssload_name_fr_idx;
+       
+        ssload_name_fr_idx << path_run_folders << "/run" << run <<  "/multi_features/fr_idx_" << peo_test(pe) << "_d" <<  sc << ".dat";
+        sLoad_fr_idx = char(load_name_fr_idx);
+        fr_idx.load( sLoad_fr_idx.str() );  // Solo uso las pares: 2,4,6...
+        fr_idx_2 = fr_idx/2; // Empieza en uno
+       
+        for (int f=0; f<:n_frames - L - 1; ++f)
+	{
+            ini = f;
+            fin = ini + L;            
+	    
+	    
+           
+	}
+       
+       
+        
+	 
+
+	
+	
+     
+       
+       
+    }
+   
+   
+  }
+  
+}
+
+
+// Tengo que usarlo en Matlab, debido a que en el testing necesito las Probabilidades
+// 
 inline
 void
 BoW::train_svm(int N_cent, const string path_run_folders)
@@ -326,7 +389,13 @@ BoW::train_svm(int N_cent, const string path_run_folders)
    
    printf("%s\n","Training SVM classifier");
    
-   bool res=svm.train(cv_training_data_hist,cv_Labels,cv::Mat(),cv::Mat(),params);
+   bool res=svm.train(cv_training_data_hist,cv_Labels,cv::Mat(),cv::Mat(),params); 
+   
+   std::stringstream ssName_svm;
+   
+   ssName_svm <<  "./run"<<run << "svm_model_Ng" << Ncent;
+   
+   svm.save( ssName_svm.str() );
    
      
 }
