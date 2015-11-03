@@ -39,29 +39,41 @@ main(int argc, char** argv)
 {
  
   int RUN = 3;
-  vec vNcent; 
-  vNcent << 64 << 128 << 256 << endr ;
   
   
-  //Creating Vocaularies  and Histograms for Training
-
-  for (int ng=0;ng<vNcent.n_elem; ng++)
-  {
-    int N_cent = vNcent(ng);
-    create_training_vocabulary_hist( N_cent, RUN);
-    
-  }
-  
-  
-//    int segm_length = 25; //OJO!!!!!!!!!
-//    
-//     for (int ng=0;ng<vNcent.n_elem; ng++)
+/// Getting the Histograms for the Training Set  
+//   vec vNcent; 
+//   vNcent << 64 << 128 << 256 << endr ;
+//   
+//   
+//   //Creating Vocaularies  and Histograms for Training
+// 
+//   for (int ng=0;ng<vNcent.n_elem; ng++)
 //   {
-//     int N_cent = vNcent(i);
-//     create_testing_hist(N_cent,  RUN, segm_length)
+//     int N_cent = vNcent(ng);
+//     create_training_vocabulary_hist( N_cent, RUN);
 //     
 //   }
   
+  
+ /// Getting the Histograms for the Testing Set  
+ 
+  
+        if(argc < 3 )
+	{
+	  cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
+	  return -1;
+	  
+	  
+	}
+	
+	int N_cent = atoi(argv[1]);
+	int segm_length = atoi(argv[2]);
+	
+	
+	create_testing_hist(N_cent,  RUN, segm_length)
+       
+   
    
    
    
@@ -130,6 +142,7 @@ create_testing_hist(int N_cent, int RUN, int segm_length)
     
     cout << "Doing for run= " << run << endl;
     cout << "N_cent " << N_cent << endl;
+    cout << "segm_length " <, segm_length << endl;
     
     
     BoW BofWords(single_path, multi_path, actionNames, co, ro, peo_train, peo_test, run);

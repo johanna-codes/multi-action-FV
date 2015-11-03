@@ -298,6 +298,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
       //Loading matrix with all features (for all frames)
       std::stringstream ssName_feat_video;
       //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
+      cout << ssName_feat_video  << endl;
       ssName_feat_video << path_run_folders << "/run" << run <<  "/multi_features/feat_" << peo_test(pe) << "_d" << sc << ".dat";
       multi_features.load( ssName_feat_video.str() );
       
@@ -373,7 +374,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
 	hist = hist/hist.max();
 	std::stringstream ssName_hist;
 	ssName_hist << "./run"<<run << "/multi_Histograms_BoW_OpenCV/multi_hist_" << peo_test(pe) << "_d" << sc << "_Ng"<< N_cent << "fr_" << ini << "_"  << fin  << ".h5";
-	cout << ssName_hist.str() << endl;
+	//cout << ssName_hist.str() << endl;
 	hist.save(ssName_hist.str(), hdf5_binary);
       }
     }
