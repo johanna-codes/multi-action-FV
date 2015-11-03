@@ -157,7 +157,7 @@ for d = 1:sc
     
         
       acc = sum(est_labels == real_labels)*100/length(real_labels);
-      ACC =  [ACC acc]
+      ACC =  [ACC acc];
       test_info{k,1} = strcat(people_test(pe));
       test_info{k,2} = real_labels;
       test_info{k,3} = est_labels;
@@ -173,6 +173,6 @@ save_info = strcat('./run', run, '/hist_test_info_ONEsvm_Ng', Ng, '_L', int2str(
 sSave_info= char(save_info);
 save(sSave_info, 'test_info');
 
-all_run_acc = [all_run_acc mean(ACC)];
+all_run_acc = [all_run_acc mean(ACC)]
 end
 
