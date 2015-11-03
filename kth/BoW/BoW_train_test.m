@@ -138,8 +138,7 @@ for d = 1:sc
             sLoad = char(load_name);
             hinfo = hdf5info(sLoad);          
             hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-    
-            prob_estimates = classify_segment(ini, fin, fr_idx_2, feat_video, mu, model  );
+ 
             n_rows = length(f:f+L);
             lab = [ 1 ]; %%% OJO!!!!!!!!!!!!
 
