@@ -142,7 +142,7 @@ create_testing_hist(int N_cent, int RUN, int segm_length)
     
     cout << "Doing for run= " << run << endl;
     cout << "N_cent " << N_cent << endl;
-    cout << "segm_length " <, segm_length << endl;
+    cout << "segm_length " << segm_length << endl;
     
     
     BoW BofWords(single_path, multi_path, actionNames, co, ro, peo_train, peo_test, run);
