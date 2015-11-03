@@ -326,8 +326,8 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
 	{
 	  
 	  uvec q1 = find(fr_idx_2 == i);
-	  cout << "ini " << ini << ". q1 " << q1.n_elem << endl;
-	  getchar();
+	  //cout << "ini " << ini << ". q1 " << q1.n_elem << endl;
+	  //getchar();
 	  mat sub_multi_features;
 	  sub_multi_features = multi_features.cols(q1);
 	  feat_frame_fr = join_rows( feat_frame_fr, sub_multi_features );
