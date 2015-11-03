@@ -56,7 +56,7 @@ for d = 1:4
 
         for act = 1:n_actions
 
-            load_name = strcat('./run', run,  '/Histograms_BoW_OpenCV/hist_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.h5');
+            load_name = strcat('./run', run,  '/Histograms_BoW_OpenCV/hist_', people_train(pe),'_',actionNames(act),'_d', sc, '_Ng', Ng, '.h5');
             sLoad = char(load_name);
             hinfo = hdf5info(sLoad);
             FV = hdf5read(hinfo.GroupHierarchy.Datasets(1));
