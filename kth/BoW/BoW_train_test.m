@@ -11,9 +11,9 @@ addpath('/media/johanna/HD1T/Toolbox/libsvm-3.20/matlab');
 addpath('/media/johanna/HD1T/Toolbox/yael/matlab');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%prompt = 'What is number of Gaussians?? ';
-%Ncent = input(prompt);
-Ncent = 4000;
+prompt = 'Dictionary Size?? ';
+Ncent = input(prompt);
+%Ncent = 4000;
 prompt = 'What is segment length? ';
 L = input(prompt);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
