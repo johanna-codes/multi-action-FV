@@ -128,7 +128,7 @@ for d = 1:sc
         fr_idx_2 = fr_idx/2; % Empieza en uno
         
         prob_frames = zeros(n_frames, n_actions);
-        display('Data loaded');
+        %display('Data loaded');
         
         for f=1:n_frames - L
             ini = f;
@@ -173,6 +173,6 @@ save_info = strcat('./run', run, '/hist_test_info_ONEsvm_Ng', Ng, '_L', int2str(
 sSave_info= char(save_info);
 save(sSave_info, 'test_info');
 
-all_run_acc = [all_run_acc mean(ACC)]
+all_run_acc = [all_run_acc mean(ACC)];
 end
-
+all_run_acc'
