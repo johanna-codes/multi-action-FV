@@ -100,7 +100,7 @@ create_training_vocabulary_hist(int N_cent, int RUN)
     
     BoW BofWords(single_path, multi_path, actionNames, co, ro, peo_train, peo_test, run);
     BofWords.create_vocabulary(N_cent, path_run_folders); 
-    BofWords.create_histograms(N_cent, path_run_folders) 
+    BofWords.create_histograms(N_cent, path_run_folders) ;
     double n = timer.toc();
     cout << "number of seconds: " << n << endl;
     //cout << "Press a Key" << endl;
