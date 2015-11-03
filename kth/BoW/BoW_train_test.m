@@ -70,7 +70,7 @@ end
 data_train = data_train';
 labels_train = labels_train';
 display('Training...');
-model = svmtrain(labels_train, data_train, ['-s 0 -t 2 -b 1 -g 0.0005 -c 600' ]); %CvSVM::RBF
+model = svmtrain(labels_train, data_train, ['-s 0 -t 2 -b 1 -g 0.00005 -c 600' ]); %CvSVM::RBF
 save_name = strcat('./run', run,  '/svm_hist_model_Ng', Ng);
 sSave= char(save_name);
 display('Saving Model...');
