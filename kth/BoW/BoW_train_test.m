@@ -135,18 +135,18 @@ for d = 1:sc
             fin = ini + L;                    
             %Aca cargar el histogram obtenido con OpenCV
             load_name = strcat('./run', run , '/multi_Histograms_BoW_OpenCV/multi_hist_', people_test(pe), '_d', sc, '_Ng', Ng, 'fr_', int2str(ini), '_', int2str(fin), '.h5');
-            sLoad = char(load_name)
-            %hinfo = hdf5info(sLoad);          
-            %hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+            sLoad = char(load_name);
+            hinfo = hdf5info(sLoad);          
+            hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
  
             n_rows = length(f:f+L);
             lab = [ 1 ]; %%% OJO!!!!!!!!!!!!
 
-            %[predicted_label, accuracy, prob_estimates] = svmpredict(double(lab'), double(hist_segment'), model, ['-b 1']);
-            %prob_frames(f:f + L,:)=prob_frames(f:f + L,:) + repmat(prob_estimates, [n_rows 1]);
+            [predicted_label, accuracy, prob_estimates] = svmpredict(double(lab'), double(hist_segment'), model, ['-b 1']);
+            prob_frames(f:f + L,:)=prob_frames(f:f + L,:) + repmat(prob_estimates, [n_rows 1]);
         end
-        display('DONE');
-        pause
+
+        
          for f=1:n_frames
              
              frame_f = prob_frames(f,:);
