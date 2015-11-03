@@ -298,9 +298,10 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
       //Loading matrix with all features (for all frames)
       std::stringstream ssName_feat_video;
       //ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
-      cout << ssName_feat_video.str()  << endl;
       ssName_feat_video << path_run_folders << "/run" << run <<  "/multi_features/feat_" << peo_test(pe) << "_d" << sc << ".dat";
       multi_features.load( ssName_feat_video.str() );
+            cout << ssName_feat_video.str()  << endl;
+
       
       //Loading labels. In a frame basis
       std::stringstream ssload_name_lab;       
@@ -359,7 +360,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
 	
 	matcher->match(features_segm_f_OpenCV,matches);
 	
-		//cout << matches.size() << endl;
+	//cout << matches.size() << endl;
 	//Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
 	vec hist;
 	hist.zeros(N_cent) ;
