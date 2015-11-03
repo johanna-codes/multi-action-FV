@@ -136,7 +136,8 @@ for d = 1:sc
             %Aca cargar el histogram obtenido con OpenCV
             load_name = strcat('./run', run , '/multi_Histograms_BoW_OpenCV/multi_hist_', people_test(pe), '_d', sc, '_Ng', Ng, 'fr_', int2str(ini), '_', int2str(fin), '.h5');
             sLoad = char(load_name);
-            hist_segment = load(sLoad);
+            hinfo = hdf5info(sLoad);          
+            hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
     
             prob_estimates = classify_segment(ini, fin, fr_idx_2, feat_video, mu, model  );
             n_rows = length(f:f+L);
