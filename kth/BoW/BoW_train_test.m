@@ -166,7 +166,6 @@ for d = 1:sc
       k = k+1;
         
       %disp('Press a Key');
-      pause
     end
 end
 display('Saving results');
