@@ -37,49 +37,40 @@ inline void create_testing_hist(int N_cent, int RUN, int segm_length);
 int
 main(int argc, char** argv)
 {
- 
+  
   int RUN = 3;
   
   
-/// Getting the Histograms for the Training Set  
-//   vec vNcent; 
-//   vNcent << 64 << 128 << 256 << endr ;
-//   
-//   
-//   //Creating Vocaularies  and Histograms for Training
-// 
-//   for (int ng=0;ng<vNcent.n_elem; ng++)
-//   {
-//     int N_cent = vNcent(ng);
-//     create_training_vocabulary_hist( N_cent, RUN);
-//     
-//   }
+  /// Getting the Histograms for the Training Set  
+  //   vec vNcent; 
+  //   vNcent << 64 << 128 << 256 << endr ;
+  //   
+  //   
+  //   //Creating Vocaularies  and Histograms for Training
+  // 
+  //   for (int ng=0;ng<vNcent.n_elem; ng++)
+  //   {
+  //     int N_cent = vNcent(ng);
+  //     create_training_vocabulary_hist( N_cent, RUN);
+  //     
+  //   }
   
   
- /// Getting the Histograms for the Testing Set  
- 
-  
-        if(argc < 3 )
-	{
-	  cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
-	  return -1;
-	  
-	  
-	}
-	
-	int N_cent = atoi(argv[1]);
-	int segm_length = atoi(argv[2]);
-	
-	
-	create_testing_hist(N_cent,  RUN, segm_length)
-       
-   
-   
-   
-   
+  /// Getting the Histograms for the Testing Set  
   
   
+  if(argc < 3 )
+  {
+    cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
+    return -1;
+    
+  }
   
+  int N_cent = atoi(argv[1]);
+  int segm_length = atoi(argv[2]);
+  
+  
+  create_testing_hist(N_cent,  RUN, segm_length);
   
   return 0;
   
@@ -135,7 +126,7 @@ create_testing_hist(int N_cent, int RUN, int segm_length)
     stringstream run_pos;
     run_pos << path_run_folders << "/run" << run << "/rand_selection_run"<< run << ".dat";
     rand_videos.load( run_pos.str() );
-
+    
     field <string>  people = rand_videos;
     field <string>  peo_train = rand_videos.rows (0,15);
     field <string>  peo_test  = rand_videos.rows (16,24);
