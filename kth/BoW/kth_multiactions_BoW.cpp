@@ -39,14 +39,15 @@ main(int argc, char** argv)
 {
  
   int RUN = 3;
-  vec vNcent << 64 << 128 << 256 << endr ;
+  vec vNcent; 
+  vNcent << 64 << 128 << 256 << endr ;
   
   
   //Creating Vocaularies  and Histograms for Training
 
   for (int ng=0;ng<vNcent.n_elem; ng++)
   {
-    int N_cent = vNcent(i);
+    int N_cent = vNcent(ng);
     create_training_vocabulary_hist( N_cent, RUN);
     
   }
