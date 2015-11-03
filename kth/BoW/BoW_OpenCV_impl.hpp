@@ -316,7 +316,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
       fr_idx_2 = fr_idx/2; // Empieza en uno
       
       
-      for (int f=0; f<n_frames - segm_length; ++f)
+      for (int f=1; f<=n_frames - segm_length; ++f)
       {
 	int ini = f;
 	int fin = ini + segm_length; 
