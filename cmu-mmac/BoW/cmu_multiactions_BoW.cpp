@@ -116,9 +116,9 @@ create_training_vocabulary_hist(int N_cent)
     
         
     BoW BofWords(path, actionNames, co, ro);
-    BofWords.vocabulary( peo_train, N_cent, in_run, path_run_folders );
-    //cout << "Histograms for Training sets" << endl;
-    //BofWords.create_hist_train( peo_train, N_cent,in_run, path_run_folders);
+    //BofWords.vocabulary( peo_train, N_cent, in_run, path_run_folders );
+    cout << "Histograms for Training sets" << endl;
+    BofWords.create_hist_train( peo_train, N_cent,in_run, path_run_folders);
     
     double n = timer.toc();
     cout << "number of seconds: " << n << endl;
