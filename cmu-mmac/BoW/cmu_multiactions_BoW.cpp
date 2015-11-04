@@ -97,7 +97,7 @@ create_training_vocabulary_hist(int N_cent)
   
   /// OJO!!!!!!!!!!!!!!!!!! Empezando en 10
   //Creating Visual Vocabulary
-  for (int in_run=10; in_run<=n_people; in_run++ ) //n_people
+  for (int in_run=1; in_run<=n_people; in_run++ ) //n_people
   {
     wall_clock timer;
     timer.tic();
