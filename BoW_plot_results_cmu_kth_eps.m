@@ -19,7 +19,7 @@ hold on
 plot(t, kth_overseg_2, '-.bd','LineWidth',3,'MarkerSize',10)
 plot(t, kth_overseg_3, ':ko','LineWidth',3,'MarkerSize',10)
 grid
-axis([0.4,2.1,74,85.5])
+%axis([0.4,2.1,74,85.5])
 %title('s-KTH dataset','FontSize',24,'FontWeight','bold');
 
 set(gca,'XTick',t); % Change x-axis ticks

@@ -269,7 +269,7 @@ BoW::create_histograms(int N_cent, const string path_run_folders)
 }
 
 
-//Training
+//Testing
 inline
 void
 BoW::create_histograms_testing(int N_cent, const string path_run_folders, int segm_length) 
