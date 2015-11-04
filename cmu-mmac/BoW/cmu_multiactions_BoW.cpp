@@ -95,8 +95,9 @@ create_training_vocabulary_hist(int N_cent)
   int n_people = people.n_rows;
   
   
+  /// OJO!!!!!!!!!!!!!!!!!! Empezando en 10
   //Creating Visual Vocabulary
-  for (int in_run=1; in_run<=n_people; in_run++ ) //n_people
+  for (int in_run=10; in_run<=n_people; in_run++ ) //n_people
   {
     wall_clock timer;
     timer.tic();
@@ -113,12 +114,11 @@ create_training_vocabulary_hist(int N_cent)
     peo_train.load( train_list.str() ); //esto lo necesito para create GMM
     peo_test.load(  test_list.str() );
     
-    
-    
+        
     BoW BofWords(path, actionNames, co, ro);
-    //BofWords.vocabulary( peo_train, N_cent, in_run, path_run_folders );
-    cout << "Histograms for Training sets" << endl;
-    BofWords.create_hist_train( peo_train, N_cent,in_run, path_run_folders);
+    BofWords.vocabulary( peo_train, N_cent, in_run, path_run_folders );
+    //cout << "Histograms for Training sets" << endl;
+    //BofWords.create_hist_train( peo_train, N_cent,in_run, path_run_folders);
     
     double n = timer.toc();
     cout << "number of seconds: " << n << endl;
