@@ -38,7 +38,7 @@ BoW::vocabulary(field <string>  peo_train, int N_cent, int run, const string pat
        
        mat mat_features_video_i;
        std::stringstream ssName_feat_video;
-       ssName_feat_video << "./features_training/feature_vectors_dim" << dim << "_" << peo_train (pe) << "_" << actions(act)<< ".dat";
+       ssName_feat_video << path_run_folders << "/features_training/feature_vectors_dim" << dim << "_" << peo_train (pe) << "_" << actions(act)<< ".dat";
        
        cout << ssName_feat_video.str() << endl;
        getchar();
