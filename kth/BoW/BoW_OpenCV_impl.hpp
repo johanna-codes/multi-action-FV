@@ -23,7 +23,7 @@ void
 BoW::create_vocabulary(int N_cent, const string path_run_folders)
 { 
   
-  cout << "Calculating Universal GMM " << endl;
+  cout << "Calculating Vocabulary " << endl;
   cout << "# clusters: " << N_cent << endl;
   
   mat uni_features;
@@ -109,7 +109,7 @@ BoW::create_vocabulary(int N_cent, const string path_run_folders)
   }
   
   
-  cout << "Create Vocabulary" << endl; 
+
   
   fmat f_uni_features = conv_to< fmat >::from(uni_features);
   //uni_features.reset();

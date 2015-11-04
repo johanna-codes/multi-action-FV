@@ -108,6 +108,7 @@ ACC = [];
 
 
 test_info =  cell(sc*n_pe_te,4);
+size(test_info)
 k=1;
 
 for d = 1:sc
@@ -165,6 +166,9 @@ for d = 1:sc
         
     end
 end
+
+k
+pause
 display('Saving results');
 save_info = strcat('./run', run, '/SysA_test_info_ONEsvm_Ng', Ng, '_L', int2str(L), '.mat');
 sSave_info= char(save_info);

@@ -46,7 +46,7 @@ main(int argc, char** argv)
   //   vNcent << 64 << 128 << 256 << endr ;
   //   
   //   
-  //   //Creating Vocaularies  and Histograms for Training
+  //   //Creating Vocabularies  and Histograms for Training
   // 
   //   for (int ng=0;ng<vNcent.n_elem; ng++)
   //   {
