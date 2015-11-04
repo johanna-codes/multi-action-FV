@@ -163,3 +163,110 @@ BoW::vocabulary(field <string>  peo_train, int N_cent, int run, const string pat
  
 
 }
+
+//Training
+inline
+void
+BoW::create_hist_train(field <string>  peo_train, int N_cent, int run, const string path_run_folders) 
+{
+  
+  //Hacer para todas las personas, luego en la parte de entrenamiento no se usan todos
+  //Step 2 - Obtain the BoF descriptor for given image/video frame. 
+  
+  //prepare BOW descriptor extractor from the dictionary    
+  cv::Mat dictionary; 
+  std::stringstream name_vocabulary;
+  name_vocabulary << "./run"<< run <<"/visual_vocabulary/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".yml"; 
+  cout << name_vocabulary.str() << endl;
+  cv::FileStorage fs(name_vocabulary.str(), cv::FileStorage::READ);
+  fs["vocabulary"] >> dictionary;
+  fs.release();    
+  //cout << "Loaded" << endl;
+  
+  
+  int rows_dic = dictionary.rows;
+  int cols_dic = dictionary.cols;
+  //cout << "OpenCV Dict rows & cols " << rows_dic << " & " << cols_dic << endl;
+  
+  vec hist;
+  
+  
+  for (uword pe=0; pe<peo_train.n_rows; ++pe)    
+  {
+    for (uword act = 0 ; act < actions.n_rows;  ++act) 
+    {
+
+	
+	mat mat_features_video_i;
+	std::stringstream ssName_feat_video;
+	//ssName_feat_video << "./run"<< run <<"/features/train/feat_vec" << peo_train(pe) << "_" << actions(act) << "_d" << sc;
+	
+	ssName_feat_video << path_run_folders << "/features_training/feature_vectors_dim" << dim << "_" << peo_train(pe) << "_" << actions(act) << ".dat";
+            
+	//cout << ssName_feat_video.str() << endl;
+	
+	mat_features_video_i.load( ssName_feat_video.str() );
+	
+	int n_r = mat_features_video_i.n_rows;
+	int n_c = mat_features_video_i.n_cols;
+	int max_n_frames = 1000000;
+	if (n_c>max_n_frames)
+	{
+	  cout << "Matrix so big" << endl;
+	  mat_features_video_i = mat_features_video_i.submat( 0, 0, dim-1, max_n_frames-1);
+	  
+	}
+	
+	
+	
+	fmat f_mat_features_video_i = conv_to< fmat >::from(mat_features_video_i);
+	mat_features_video_i.reset();
+	
+	
+	cv::Mat features_video_i_OpenCV(f_mat_features_video_i.n_cols, dim, CV_32FC1, f_mat_features_video_i.memptr() );
+	
+	
+	int rows = features_video_i_OpenCV.rows;
+	int cols = features_video_i_OpenCV.cols;
+	
+	//cout << "Features rows & cols " << rows << " & " << cols << endl;
+	
+	
+	// init the matcher with you pre-trained codebook
+	cv::Ptr<cv::DescriptorMatcher > matcher = new cv::BFMatcher(cv::NORM_L2);
+	matcher->add(std::vector<cv::Mat>(1, dictionary));
+	
+	
+	// matches
+	std::vector<cv::DMatch> matches;	 
+	
+	matcher->match(features_video_i_OpenCV,matches);
+	
+	
+	//cout << matches.size() << endl;
+	//Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
+	hist.zeros(N_cent) ;
+	
+	for (int i=0; i< matches.size(); ++i)
+	{
+	  //cout <<  matches[i].trainIdx << " " ;
+	  int bin =  matches[i].trainIdx ;
+	  hist(bin)++;
+	  
+	  
+	}
+	
+	//getchar();
+	//cout << hist.t() << endl;
+	hist = hist/hist.max();
+	//cout << hist.n_elem << endl;
+	std::stringstream ssName_hist;
+	
+	
+	ssName_hist << "./run"<<run << "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) <<  "_Ng"<< N_cent << ".h5";
+	
+	hist.save(ssName_hist.str(), hdf5_binary);
+ 
+    }
+  }
+}

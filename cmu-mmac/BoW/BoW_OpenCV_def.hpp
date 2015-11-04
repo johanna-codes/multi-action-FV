@@ -8,6 +8,7 @@ public:
  		  );
     
     inline void vocabulary( field<string>peo_train, int in_Ncent,  int run, const string path_run_folders );
+    inline void create_hist_train(field <string>  peo_train, int N_cent, int run, const string path_run_folders);
     
 
 

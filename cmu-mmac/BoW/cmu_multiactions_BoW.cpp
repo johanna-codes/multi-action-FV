@@ -122,9 +122,6 @@ create_training_vocabulary_hist(int N_cent)
     cout << "number of seconds: " << n << endl;
     
   }
-  
-  
-  
 }
 
 
