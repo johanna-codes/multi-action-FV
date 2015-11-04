@@ -49,7 +49,7 @@ const std::string  actionNames = "actionNames.txt";
 const string path_run_folders = "/home/johanna/codes/codes-git/multi-action-FV/trunk/cmu-mmac";
 
 
-inline void create_training_vocabulary_hist(int N_cent, int RUN);
+inline void create_training_vocabulary_hist(int N_cent);
 
 int
 main(int argc, char** argv)
