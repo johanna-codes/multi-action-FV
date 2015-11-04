@@ -55,6 +55,17 @@ int
 main(int argc, char** argv)
 {
   
+    
+  if(argc < 2 )
+  {
+    cout << "usage: " << argv[0] << " Ng " << endl;
+    return -1;
+    
+  }
+  
+    int N_cent = atoi(argv[1]);
+  
+  
   /// Getting the Histograms for the Training Set  
   vec vNcent; 
   vNcent << 64 << 128 << 256 << endr ;
@@ -62,12 +73,12 @@ main(int argc, char** argv)
   
   //Creating Vocabularies  and Histograms for Training
   
-  for (int ng=0;ng<vNcent.n_elem; ng++)
-  {
-    int N_cent = vNcent(ng);
+  //for (int ng=0;ng<vNcent.n_elem; ng++)
+ // {
+  //  int N_cent = vNcent(ng);
     create_training_vocabulary_hist( N_cent);
     
-  }
+  //}
   
   
   return 0;
