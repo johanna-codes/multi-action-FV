@@ -21,8 +21,8 @@ using namespace arma;
 //uword ro = 240;
 //uword co = 320;
 
- uword ro = 96;
- uword co = 128;
+uword ro = 96;
+uword co = 128;
 
 
 //for gmm_cmu
@@ -55,27 +55,21 @@ int
 main(int argc, char** argv)
 {
   
-  
-  field<string> people;
-  people.load(peopleList);
-
-  
-  
   /// Getting the Histograms for the Training Set  
-     vec vNcent; 
-     vNcent << 64 << 128 << 256 << endr ;
-     
-     
-     //Creating Vocabularies  and Histograms for Training
-   
-     for (int ng=0;ng<vNcent.n_elem; ng++)
-     {
-       int N_cent = vNcent(ng);
-       create_training_vocabulary_hist( N_cent);
-       
-     }
+  vec vNcent; 
+  vNcent << 64 << 128 << 256 << endr ;
+  
+  
+  //Creating Vocabularies  and Histograms for Training
+  
+  for (int ng=0;ng<vNcent.n_elem; ng++)
+  {
+    int N_cent = vNcent(ng);
+    create_training_vocabulary_hist( N_cent);
     
-
+  }
+  
+  
   return 0;
   
 }
@@ -84,6 +78,9 @@ inline void
 create_training_vocabulary_hist(int N_cent)
 {
   
+  
+  field<string> people;
+  people.load(peopleList);
   int n_people = people.n_rows;
   
   
@@ -106,7 +103,7 @@ create_training_vocabulary_hist(int N_cent)
     peo_test.load(  test_list.str() );
     
     
- 
+    
     BoW BofWords(path, actionNames, co, ro);
     BofWords.vocabulary( peo_train, N_cent, in_run, path_run_folders );
     
@@ -115,7 +112,7 @@ create_training_vocabulary_hist(int N_cent)
     
   }
   
- 
+  
   
 }
 
