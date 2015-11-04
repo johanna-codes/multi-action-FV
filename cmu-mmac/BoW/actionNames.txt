@@ -1,0 +1,14 @@
+close
+crack
+none
+open
+pour
+put
+read
+spray
+stir
+switch_on
+take
+twist_off
+twist_on
+walk
