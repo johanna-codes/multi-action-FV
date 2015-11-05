@@ -9,7 +9,7 @@ public:
     
     inline void vocabulary( field<string>peo_train, int in_Ncent,  int run, const string path_run_folders );
     inline void create_hist_train(field <string>  peo_train, int N_cent, int run, const string path_run_folders);
-    inline void create_histograms_testing(field <string>  peo_test, int N_cent, const string path_run_folders, int segm_length); 
+    inline void create_histograms_testing(field <string>  peo_test, int N_cent, int run, const string path_run_folders, int segm_length); 
     
 
 

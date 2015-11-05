@@ -143,7 +143,7 @@ create_testing_hist(int N_cent, int segm_length)
     BoW BofWords(path, actionNames, co, ro);
     
     cout << "Multi_features" << endl;
-    BofWords.create_histograms_testing(peo_test, N_cent, path_run_folders, segm_length);
+    BofWords.create_histograms_testing(peo_test, N_cent, run, path_run_folders, segm_length);
     double n = timer.toc();
     cout << "number of seconds: " << n << endl;
     //cout << "Press a Key" << endl;

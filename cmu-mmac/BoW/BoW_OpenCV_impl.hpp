@@ -255,7 +255,7 @@ BoW::create_hist_train(field <string>  peo_train, int N_cent, int run, const str
 //Testing
 inline
 void
-BoW::create_histograms_testing(field <string>  peo_test, int N_cent, const string path_run_folders, int segm_length) 
+BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, const string path_run_folders, int segm_length) 
 {
   
   //prepare BOW descriptor extractor from the dictionary    
