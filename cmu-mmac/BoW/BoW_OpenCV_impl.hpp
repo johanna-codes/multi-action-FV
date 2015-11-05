@@ -155,12 +155,6 @@ BoW::vocabulary(field <string>  peo_train, int N_cent, int run, const string pat
   fs << "vocabulary" << dictionary;
   fs.release();
   cout << "DONE"<< endl;
-  
-  
-  
-  
-  
- 
 
 }
 
@@ -214,20 +208,126 @@ BoW::create_hist_train(field <string>  peo_train, int N_cent, int run, const str
 	{
 	  cout << "Matrix so big" << endl;
 	  mat_features_video_i = mat_features_video_i.submat( 0, 0, dim-1, max_n_frames-1);
-	  
 	}
-	
-	
 	
 	fmat f_mat_features_video_i = conv_to< fmat >::from(mat_features_video_i);
 	mat_features_video_i.reset();
 	
-	
 	cv::Mat features_video_i_OpenCV(f_mat_features_video_i.n_cols, dim, CV_32FC1, f_mat_features_video_i.memptr() );
-	
 	
 	int rows = features_video_i_OpenCV.rows;
 	int cols = features_video_i_OpenCV.cols;
+	
+	//cout << "Features rows & cols " << rows << " & " << cols << endl;
+	// init the matcher with you pre-trained codebook
+	cv::Ptr<cv::DescriptorMatcher > matcher = new cv::BFMatcher(cv::NORM_L2);
+	matcher->add(std::vector<cv::Mat>(1, dictionary));
+	
+	// matches
+	std::vector<cv::DMatch> matches;	 
+	
+	matcher->match(features_video_i_OpenCV,matches);
+	//cout << matches.size() << endl;
+	//Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
+	hist.zeros(N_cent) ;
+	
+	for (int i=0; i< matches.size(); ++i)
+	{
+	  //cout <<  matches[i].trainIdx << " " ;
+	  int bin =  matches[i].trainIdx ;
+	  hist(bin)++;
+	}
+	
+	//getchar();
+	//cout << hist.t() << endl;
+	hist = hist/hist.max();
+	//cout << hist.n_elem << endl;
+	std::stringstream ssName_hist;
+	
+	ssName_hist << "./run"<<run << "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) <<  "_Ng"<< N_cent << ".h5";
+	
+	hist.save(ssName_hist.str(), hdf5_binary);
+ 
+    }
+  }
+}
+
+//Testing
+inline
+void
+BoW::create_histograms_testing(field <string>  peo_test, int N_cent, const string path_run_folders, int segm_length) 
+{
+  
+  //prepare BOW descriptor extractor from the dictionary    
+  cv::Mat dictionary; 
+  std::stringstream name_vocabulary;
+  name_vocabulary << "./run"<< run <<"/visual_vocabulary/means_Ng" << N_cent << "_dim" <<dim << "_all_sc" << ".yml"; 
+  cout << name_vocabulary.str() << endl;
+  cv::FileStorage fs(name_vocabulary.str(), cv::FileStorage::READ);
+  fs["vocabulary"] >> dictionary;
+  fs.release();    
+  //cout << "Loaded" << endl;
+  
+  
+  
+  mat multi_features;
+  vec real_labels, fr_idx, fr_idx_2;
+  
+    for (uword pe=0; pe<peo_test.n_rows; ++pe)    
+    {
+      
+      //Loading matrix with all features (for all frames)
+      std::stringstream ssName_feat_video;
+      
+      
+      ssName_feat_video << path_run_folders << "/multi_features/feat_" << peo_test(pe) << ".dat";
+      multi_features.load( ssName_feat_video.str() );
+      cout << ssName_feat_video.str()  << endl;
+
+      
+      //Loading labels. In a frame basis
+      std::stringstream ssload_name_lab;       
+      ssload_name_lab << path_run_folders << "/run" << run <<  "/multi_features/lab_" << peo_test(pe) << "_d" << sc << ".dat";
+      real_labels.load( ssload_name_lab.str() );
+      int n_frames = real_labels.n_elem;
+      
+      //Loading frame index for each of the feature vector in feat_video
+      
+      std::stringstream ssload_name_fr_idx;
+      
+      ssload_name_fr_idx << path_run_folders << "/run" << run <<  "/multi_features/fr_idx_" << peo_test(pe) << "_d" <<  sc << ".dat";
+      fr_idx.load( ssload_name_fr_idx.str() );  // Solo uso las pares: 2,4,6...
+      fr_idx_2 = fr_idx/2; // Empieza en uno
+      
+      
+      for (int f=1; f<=n_frames - segm_length; ++f)
+      {
+	int ini = f;
+	int fin = ini + segm_length; 
+	mat feat_frame_fr;
+	
+	for (int i=ini; i<=fin; ++i)
+	{
+	  
+	  uvec q1 = find(fr_idx_2 == i);
+	  //cout << "ini " << ini << ". q1 " << q1.n_elem << endl;
+	  //getchar();
+	  mat sub_multi_features;
+	  sub_multi_features = multi_features.cols(q1);
+	  feat_frame_fr = join_rows( feat_frame_fr, sub_multi_features );
+	}
+	
+	//Aqui Obtener el histogram y guardarlo!!!!!!!!!!!!!!!
+	
+	fmat f_feat_frame_fr = conv_to< fmat >::from(feat_frame_fr);
+	feat_frame_fr.reset();
+	
+	
+	cv::Mat features_segm_f_OpenCV(f_feat_frame_fr.n_cols, dim, CV_32FC1, f_feat_frame_fr.memptr() );
+	
+	
+	int rows = features_segm_f_OpenCV.rows;
+	int cols = features_segm_f_OpenCV.cols;
 	
 	//cout << "Features rows & cols " << rows << " & " << cols << endl;
 	
@@ -240,33 +340,31 @@ BoW::create_hist_train(field <string>  peo_train, int N_cent, int run, const str
 	// matches
 	std::vector<cv::DMatch> matches;	 
 	
-	matcher->match(features_video_i_OpenCV,matches);
-	
+	matcher->match(features_segm_f_OpenCV,matches);
 	
 	//cout << matches.size() << endl;
 	//Mira aqui: http://ttic.uchicago.edu/~mostajabi/Tutorial.html
+	vec hist;
 	hist.zeros(N_cent) ;
 	
 	for (int i=0; i< matches.size(); ++i)
 	{
-	  //cout <<  matches[i].trainIdx << " " ;
 	  int bin =  matches[i].trainIdx ;
 	  hist(bin)++;
-	  
-	  
 	}
 	
-	//getchar();
-	//cout << hist.t() << endl;
+
 	hist = hist/hist.max();
-	//cout << hist.n_elem << endl;
 	std::stringstream ssName_hist;
-	
-	
-	ssName_hist << "./run"<<run << "/Histograms_BoW_OpenCV/hist_" << peo_train(pe) << "_" << actions(act) <<  "_Ng"<< N_cent << ".h5";
-	
+	ssName_hist << "./run"<<run << "/multi_Histograms_BoW_OpenCV/multi_hist_" << peo_test(pe) << "_d" << sc << "_Ng"<< N_cent << "fr_" << ini << "_"  << fin  << ".h5";
+	//cout << ssName_hist.str() << endl;
 	hist.save(ssName_hist.str(), hdf5_binary);
- 
+      }
     }
+
   }
+  
 }
+
+
+
