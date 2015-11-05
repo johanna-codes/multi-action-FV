@@ -130,9 +130,9 @@ create_testing_hist(int N_cent, int segm_length)
     field<string> peo_train;
     field<string> peo_test;
     std::stringstream train_list;
-    train_list<< path_run_folders << "/run" << run << "/train_list_run"<< in_run << ".dat";
+    train_list<< path_run_folders << "/run" << run << "/train_list_run"<< run << ".dat";
     std::stringstream test_list;
-    test_list<< path_run_folders <<  "/run" << run << "/test_list_run"<< in_run << ".dat";
+    test_list<< path_run_folders <<  "/run" << run << "/test_list_run"<< run << ".dat";
 
     
     cout << "Doing for run= " << run << endl;
