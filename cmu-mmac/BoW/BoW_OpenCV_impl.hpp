@@ -295,7 +295,7 @@ BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, co
       
       std::stringstream ssload_name_fr_idx;
       
-      ssload_name_fr_idx << path_run_folders << "/run" << run <<  "/multi_features/fr_idx_" << peo_test(pe) << "_d" <<  sc << ".dat";
+      ssload_name_fr_idx << path_run_folders << "/run" << run <<  "/multi_features/fr_idx_" << peo_test(pe) << ".dat";
       fr_idx.load( ssload_name_fr_idx.str() );  // Solo uso las pares: 2,4,6...
       fr_idx_2 = fr_idx/2; // Empieza en uno
       
@@ -317,7 +317,6 @@ BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, co
 	  feat_frame_fr = join_rows( feat_frame_fr, sub_multi_features );
 	}
 	
-	//Aqui Obtener el histogram y guardarlo!!!!!!!!!!!!!!!
 	
 	fmat f_feat_frame_fr = conv_to< fmat >::from(feat_frame_fr);
 	feat_frame_fr.reset();
