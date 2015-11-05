@@ -287,7 +287,7 @@ BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, co
       
       //Loading labels. In a frame basis
       std::stringstream ssload_name_lab;       
-      ssload_name_lab << path_run_folders << "/run" << run <<  "/multi_features/lab_" << peo_test(pe) <<  ".dat";
+      ssload_name_lab << path_run_folders <<  "/multi_features/lab_" << peo_test(pe) <<  ".dat";
       real_labels.load( ssload_name_lab.str() );
       int n_frames = real_labels.n_elem;
       
@@ -295,7 +295,7 @@ BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, co
       
       std::stringstream ssload_name_fr_idx;
       
-      ssload_name_fr_idx << path_run_folders << "/run" << run <<  "/multi_features/fr_idx_" << peo_test(pe) << ".dat";
+      ssload_name_fr_idx << path_run_folders <<  "/multi_features/fr_idx_" << peo_test(pe) << ".dat";
       fr_idx.load( ssload_name_fr_idx.str() );  // Solo uso las pares: 2,4,6...
       fr_idx_2 = fr_idx/2; // Empieza en uno
       
