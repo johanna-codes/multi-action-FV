@@ -127,12 +127,12 @@ create_testing_hist(int N_cent, int segm_length)
     wall_clock timer;
     timer.tic();
     
-    field<string> peo_train;
     field<string> peo_test;
-    std::stringstream train_list;
-    train_list<< path_run_folders << "/run" << run << "/train_list_run"<< run << ".dat";
+
     std::stringstream test_list;
     test_list<< path_run_folders <<  "/run" << run << "/test_list_run"<< run << ".dat";
+    
+    peo_test.load(  test_list.str() );
 
     
     cout << "Doing for run= " << run << endl;
