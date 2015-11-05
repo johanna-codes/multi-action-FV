@@ -362,8 +362,6 @@ BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, co
     }
 
   }
-  
-}
 
 
 
