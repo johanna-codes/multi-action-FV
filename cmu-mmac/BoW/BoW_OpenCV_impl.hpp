@@ -355,7 +355,7 @@ BoW::create_histograms_testing(field <string>  peo_test, int N_cent, int run, co
 
 	hist = hist/hist.max();
 	std::stringstream ssName_hist;
-	ssName_hist << "./run"<<run << "/multi_Histograms_BoW_OpenCV/multi_hist_" << peo_test(pe) << "_d" << sc << "_Ng"<< N_cent << "fr_" << ini << "_"  << fin  << ".h5";
+	ssName_hist << "./run"<<run << "/multi_Histograms_BoW_OpenCV/multi_hist_" << peo_test(pe) <<  "_Ng"<< N_cent << "fr_" << ini << "_"  << fin  << ".h5";
 	//cout << ssName_hist.str() << endl;
 	hist.save(ssName_hist.str(), hdf5_binary);
       }
