@@ -50,38 +50,27 @@ const string path_run_folders = "/home/johanna/codes/codes-git/multi-action-FV/t
 
 
 inline void create_training_vocabulary_hist(int N_cent);
+inline void create_testing_hist(int N_cent, int segm_length);
 
 int
 main(int argc, char** argv)
 {
   
     
-  if(argc < 2 )
+  if(argc < 3 )
   {
-    cout << "usage: " << argv[0] << " Ng " << endl;
-    return -1;
-    
+    cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
+    return -1;    
   }
   
+  
     int N_cent = atoi(argv[1]);
-  
-  
-  /// Getting the Histograms for the Training Set  
-  vec vNcent; 
-  vNcent << 64 << 128 << 256 << endr ;
-  
-  
-  //Creating Vocabularies  and Histograms for Training
-  
-  //for (int ng=0;ng<vNcent.n_elem; ng++)
- // {
-  //  int N_cent = vNcent(ng);
+    int segm_length = atoi(argv[2]);
+
     create_training_vocabulary_hist( N_cent);
+    create_testing_hist( N_cent, segm_length);
     
-  //}
-  
-  
-  return 0;
+    return 0;
   
 }
 
@@ -89,13 +78,10 @@ inline void
 create_training_vocabulary_hist(int N_cent)
 {
   
-  
   field<string> people;
   people.load(peopleList);
   int n_people = people.n_rows;
   
-  
-  /// OJO!!!!!!!!!!!!!!!!!! Empezando en 10
   //Creating Visual Vocabulary
   for (int in_run=1; in_run<=n_people; in_run++ ) //n_people
   {
@@ -122,6 +108,46 @@ create_training_vocabulary_hist(int N_cent)
     
     double n = timer.toc();
     cout << "number of seconds: " << n << endl;
+    
+  }
+}
+
+inline
+void
+create_testing_hist(int N_cent, int segm_length)
+{
+  
+  field<string> people;
+  people.load(peopleList);
+  int n_people = people.n_rows;
+  
+  
+  for (int run=1;run<=n_people; run++)
+  {
+    wall_clock timer;
+    timer.tic();
+    
+    field<string> peo_train;
+    field<string> peo_test;
+    std::stringstream train_list;
+    train_list<< path_run_folders << "/run" << run << "/train_list_run"<< in_run << ".dat";
+    std::stringstream test_list;
+    test_list<< path_run_folders <<  "/run" << run << "/test_list_run"<< in_run << ".dat";
+
+    
+    cout << "Doing for run= " << run << endl;
+    cout << "N_cent " << N_cent << endl;
+    cout << "segm_length " << segm_length << endl;
+    
+    
+    BoW BofWords(path, actionNames, co, ro);
+    
+    cout << "Multi_features" << endl;
+    BofWords.create_histograms_testing(peo_test, N_cent, path_run_folders, segm_length);
+    double n = timer.toc();
+    cout << "number of seconds: " << n << endl;
+    //cout << "Press a Key" << endl;
+    //getchar();
     
   }
 }
