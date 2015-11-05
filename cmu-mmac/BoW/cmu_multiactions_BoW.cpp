@@ -67,8 +67,8 @@ main(int argc, char** argv)
     int N_cent = atoi(argv[1]);
     int segm_length = atoi(argv[2]);
 
-    create_training_vocabulary_hist( N_cent);
-    //create_testing_hist( N_cent, segm_length);
+    //create_training_vocabulary_hist( N_cent);
+    create_testing_hist( N_cent, segm_length);
     
     return 0;
   
@@ -116,7 +116,7 @@ inline
 void
 create_testing_hist(int N_cent, int segm_length)
 {
-  
+  cout << "Histograms for Testing Set" << endl;
   field<string> people;
   people.load(peopleList);
   int n_people = people.n_rows;
