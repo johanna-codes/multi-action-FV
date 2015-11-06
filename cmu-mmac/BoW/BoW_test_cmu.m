@@ -1,4 +1,4 @@
-function BoW_test(Ng,RUN,L,path_run_folders)
+function BoW_test_cmu(Ng,RUN,L,path_run_folders)
 all_run_acc = [];
 
 

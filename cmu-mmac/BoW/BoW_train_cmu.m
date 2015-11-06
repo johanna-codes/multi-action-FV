@@ -1,4 +1,4 @@
-function BoW_train(RUN, Ng, path_run_folders)
+function BoW_train_cmu(RUN, Ng, path_run_folders)
 
 
 for r=1:RUN
