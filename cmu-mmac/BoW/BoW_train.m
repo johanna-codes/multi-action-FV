@@ -1,6 +1,5 @@
 function BoW_train(RUN, Ng, path_run_folders)
 
-all_run_acc = [];
 
 for r=1:RUN
     run = int2str(r);
@@ -39,7 +38,7 @@ for r=1:RUN
     data_train = data_train';
     labels_train = labels_train';
     display('Training...');
-    model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
+    model = svmtrain(labels_train, data_train, ['-s 0 -t 2 -b 1 -g 0.0005 -c 600' ]);
     save_name = strcat('./run', run,  '/svm_hist_model_Ng', Ng);
     display('Saving Model...');
     sSave= char(save_name);
