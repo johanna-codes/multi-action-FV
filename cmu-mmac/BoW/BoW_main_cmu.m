@@ -18,7 +18,7 @@ addpath('/media/johanna/HD1T/Toolbox/yael/matlab');
 
 Ncent =64;
 L =90;
-RUN=1;
+RUN=12;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %RUN = 12;
