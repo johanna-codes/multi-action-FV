@@ -31,8 +31,8 @@ for r=1:RUN
                 hist = hdf5read(hinfo.GroupHierarchy.Datasets(1));
                 [a b] = size(find(isnan( hist )))
                 pause
-                if (b==0)
-                    b
+                if (a==0)
+                 
                     data_train = [data_train hist];
                     labels_train = [labels_train (act)];
                 end
