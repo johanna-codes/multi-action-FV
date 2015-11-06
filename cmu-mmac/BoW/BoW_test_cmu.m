@@ -49,16 +49,15 @@ k=1;
             hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
             
              [a b] = size(find(isnan( hist_segment )));                
-                if (a==0)
-                    f
-                   display('Piensa piensa');
-                end
- 
-            n_rows = length(f:f+L);
-            lab = [ 1 ]; %%% OJO!!!!!!!!!!!!
-
-            [predicted_label, accuracy, prob_estimates] = svmpredict(double(lab'), double(hist_segment'), model, ['-b 1']);
-            prob_frames(f:f + L,:)=prob_frames(f:f + L,:) + repmat(prob_estimates, [n_rows 1]);
+             if (a==0)        
+                 n_rows = length(f:f+L);
+                 lab = [ 1 ]; %%% OJO!!!!!!!!!!!!
+                 [predicted_label, accuracy, prob_estimates] = svmpredict(double(lab'), double(hist_segment'), model, ['-b 1']);
+                 prob_frames(f:f + L,:)=prob_frames(f:f + L,:) + repmat(prob_estimates, [n_rows 1]);
+             else               
+                 %display('Piensa piensa');
+                 f
+             end
         end
         
          for f=1:n_frames
