@@ -29,8 +29,7 @@ for r=1:RUN
             if (exist(sLoad))
                 hinfo = hdf5info(sLoad);
                 hist = hdf5read(hinfo.GroupHierarchy.Datasets(1));
-                [a b] = size(find(isnan( hist )))
-                pause
+                [a b] = size(find(isnan( hist )));                
                 if (a==0)
                  
                     data_train = [data_train hist];
