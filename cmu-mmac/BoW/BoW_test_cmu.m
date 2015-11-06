@@ -47,6 +47,12 @@ k=1;
             sLoad = char(load_name);
             hinfo = hdf5info(sLoad);          
             hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
+            
+             [a b] = size(find(isnan( hist_segment )));                
+                if (a==0)
+                    f
+                   display('Piensa piensa');
+                end
  
             n_rows = length(f:f+L);
             lab = [ 1 ]; %%% OJO!!!!!!!!!!!!
