@@ -1,6 +1,7 @@
 function BoW_test_cmu(Ng,RUN,L,path_run_folders)
 all_run_acc = [];
-
+actionNames = importdata('actionNames.txt');
+n_actions = length(actionNames);
 
 for r=1:RUN
 run = int2str(r);

@@ -23,7 +23,7 @@ dim = int2str(14);
 path_run_folders = '/home/johanna/codes/codes-git/multi-action-FV/trunk/cmu-mmac';
 
 %% TRAINING
-BoW_train_cmu(RUN, Ng, path_run_folders);
+%BoW_train_cmu(RUN, Ng, path_run_folders);
 
 %% Testing
 %BoW_test_cmu(Ng,RUN,L,path_run_folders)
