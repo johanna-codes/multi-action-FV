@@ -1,4 +1,4 @@
-function BoW_test_cmu(Ng,RUN,L,path_run_folders)
+function all_run_acc = BoW_test_cmu(Ng,RUN,L,path_run_folders)
 all_run_acc = [];
 actionNames = importdata('actionNames.txt');
 n_actions = length(actionNames);
@@ -88,6 +88,5 @@ save(sSave_info, 'test_info');
 all_run_acc = [all_run_acc ACC];
 %C = myplotconfmatriz(n_actions,real_labels,est_labels );
 end
-all_run_acc'
 
 

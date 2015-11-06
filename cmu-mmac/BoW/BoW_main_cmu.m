@@ -30,7 +30,9 @@ path_run_folders = '/home/johanna/codes/codes-git/multi-action-FV/trunk/cmu-mmac
 BoW_train_cmu(RUN, Ng, path_run_folders);
 
 %% Testing
-BoW_test_cmu(Ng,RUN,L,path_run_folders)
+all_run_acc = BoW_test_cmu(Ng,RUN,L,path_run_folders);
+all_run_acc'
+
 
 
 
