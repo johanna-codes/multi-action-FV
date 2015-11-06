@@ -16,8 +16,8 @@ addpath('/media/johanna/HD1T/Toolbox/yael/matlab');
 % prompt = 'What is segment length? ';
 % L = input(prompt);
 
-Ncent =128;
-L =15;
+Ncent =64;
+L =90;
 RUN=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
