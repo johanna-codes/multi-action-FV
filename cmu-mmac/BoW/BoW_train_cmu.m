@@ -42,7 +42,7 @@ for r=1:RUN
     data_train = data_train';
     labels_train = labels_train';
     display('Training...');
-    model = svmtrain(labels_train, data_train, ['-s 0 -t 2 -b 1 -g 0.5 -c 600']);
+    model = svmtrain(labels_train, data_train, ['-s 0 -t 2 -b 1 -g 1 -c 600']);
     save_name = strcat('./run', run,  '/svm_hist_model_Ng', Ng);
     display('Saving Model...');
     sSave= char(save_name);
