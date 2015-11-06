@@ -13,7 +13,7 @@ load(sLoad);
 
 ACC = [];
 
-people_test = importdata(strcat('./run', run, '/test_list_run', run, '.dat'));
+people_test = importdata(strcat(path_run_folders,'/run', run, '/test_list_run', run, '.dat'));
 n_pe_te  = length(people_test);
 
 test_info =  cell(n_pe_te,4);
