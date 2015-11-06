@@ -31,9 +31,9 @@ path_run_folders = '/home/johanna/codes/codes-git/multi-action-FV/trunk/kth';
 
 %% TRAINING
 
-%BoW_train(Ncent,RUN,DIM,path_run_folders);
+BoW_train(Ncent,RUN,DIM,path_run_folders);
 
 
 %% TESTING.
 
-BoW_test(Ncent, L, RUN,path_run_folders);
+%BoW_test(Ncent, L, RUN,path_run_folders);

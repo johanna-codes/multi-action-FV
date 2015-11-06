@@ -385,7 +385,7 @@ BoW::create_histograms_testing(int N_cent, const string path_run_folders, int se
 }
 
 
-// Tengo que usarlo en Matlab, debido a que en el testing necesito las Probabilidades
+// Tengo que hacerlo en Matlab, debido a que en el testing necesito las Probabilidades
 // 
 inline
 void
