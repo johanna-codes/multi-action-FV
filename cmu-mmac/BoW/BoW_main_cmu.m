@@ -11,13 +11,13 @@ addpath('/media/johanna/HD1T/Toolbox/libsvm-3.20/matlab');
 addpath('/media/johanna/HD1T/Toolbox/yael/matlab');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% prompt = 'Number of Gaussians? ';
-% Ncent = input(prompt);
-% prompt = 'What is segment length? ';
-% L = input(prompt);
+prompt = 'Number of Gaussians? ';
+Ncent = input(prompt);
+prompt = 'What is segment length? ';
+L = input(prompt);
 
-Ncent =64;
-L = 15;
+% Ncent =64;
+% L = 15;
 RUN=12;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
