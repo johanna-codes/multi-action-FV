@@ -67,8 +67,8 @@ main(int argc, char** argv)
     int N_cent = atoi(argv[1]);
     int segm_length = atoi(argv[2]);
 
-    create_training_vocabulary_hist( N_cent);
-    //create_testing_hist( N_cent, segm_length);
+    //create_training_vocabulary_hist( N_cent);
+    create_testing_hist( N_cent, segm_length);
     
     return 0;
   
@@ -84,7 +84,7 @@ create_training_vocabulary_hist(int N_cent)
   
   //Creating Visual Vocabulary
   //OJO!!!!!!!
-  for (int in_run=10; in_run<=n_people; in_run++ ) //n_people
+  for (int in_run=1; in_run<=n_people; in_run++ ) //n_people
   {
     wall_clock timer;
     timer.tic();
@@ -123,7 +123,7 @@ create_testing_hist(int N_cent, int segm_length)
   int n_people = people.n_rows;
   
   
-  for (int run=1;run<=n_people; run++)
+  for (int run=n_people;run<=1; run--)
   {
     wall_clock timer;
     timer.tic();
