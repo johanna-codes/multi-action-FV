@@ -17,17 +17,17 @@ display('************************************************');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%prompt = 'Number of Gaussians? ';
-%Ncent = input(prompt);
-Ncent=32;
+prompt = 'Number of Gaussians? ';
+Ncent = input(prompt);
+%Ncent=32;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 RUN = 12;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %display(' ');
- display('Calculating FV for Training');
- FV_cmu_training(Ncent, RUN);
+%  display('Calculating FV for Training');
+%  FV_cmu_training(Ncent, RUN);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Ng = int2str(Ncent);
@@ -37,41 +37,41 @@ actionNames = importdata('actionNames.txt');
 n_actions = length(actionNames);
 
 %% TRAINING
-for r=1:RUN
-run = int2str(r);
-fprintf('Training RUN %d \n', r);
-people_train = importdata(strcat('./run', run, '/train_list_run', run, '.dat'));
- n_pe_tr  = length(people_train);
-data_train = [];
-labels_train = [];
-
-
-
-display('Loading Training data');
-    for pe = 1: n_pe_tr
-
-        for act = 1:n_actions
-
-            load_name = strcat('./run', run,  '/FV_training/FV_', people_train(pe),'_',actionNames(act), '_Ng', Ng, '.txt');
-            sLoad = char(load_name);
-            if (exist(sLoad))
-            FV = load(sLoad);
-            data_train = [data_train FV];
-            labels_train = [labels_train (act)];
-            end
-
-        end
-    end
-
-data_train = data_train';
-labels_train = labels_train';
-display('Training...');
-model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
-save_name = strcat('./run', run,  '/svm_model_Ng', Ng);
-display('Saving Model...');
-sSave= char(save_name);
-save(sSave, 'model');
-end
+% for r=1:RUN
+% run = int2str(r);
+% fprintf('Training RUN %d \n', r);
+% people_train = importdata(strcat('./run', run, '/train_list_run', run, '.dat'));
+%  n_pe_tr  = length(people_train);
+% data_train = [];
+% labels_train = [];
+% 
+% 
+% 
+% display('Loading Training data');
+%     for pe = 1: n_pe_tr
+% 
+%         for act = 1:n_actions
+% 
+%             load_name = strcat('./run', run,  '/FV_training/FV_', people_train(pe),'_',actionNames(act), '_Ng', Ng, '.txt');
+%             sLoad = char(load_name);
+%             if (exist(sLoad))
+%             FV = load(sLoad);
+%             data_train = [data_train FV];
+%             labels_train = [labels_train (act)];
+%             end
+% 
+%         end
+%     end
+% 
+% data_train = data_train';
+% labels_train = labels_train';
+% display('Training...');
+% model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
+% save_name = strcat('./run', run,  '/svm_model_Ng', Ng);
+% display('Saving Model...');
+% sSave= char(save_name);
+% save(sSave, 'model');
+% end
 
 
 
@@ -164,4 +164,4 @@ save(sSave_info, 'test_info');
 all_run_acc = [all_run_acc ACC];
 %C = myplotconfmatriz(n_actions,real_labels,est_labels );
 end
-
+all_run_acc'

@@ -13,9 +13,9 @@ addpath('/media/johanna/HD1T/Toolbox/yael/matlab');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %prompt = 'What is number of Gaussians?? ';
 %Ncent = input(prompt);
-Ncent = 256
-prompt = 'What is segment length? ';
-L = input(prompt);
+% Ncent = 256
+% prompt = 'What is segment length? ';
+% L = input(prompt);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 RUN = 3;
 DIM =14;
@@ -31,49 +31,49 @@ dim = int2str(DIM);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% TRAINING
-for r=1:RUN
-fprintf('RUN %d \n', r);
-run = int2str(r);
-
-%sc = int2str(4);
-
-people = importdata(strcat('./run', run, '/rand_selection_run', run, '.dat'));
-actionNames = importdata('actionNames.txt');
-people_train = people(1:16);
-
-
-n_pe_tr  = length(people_train);
-n_actions = length(actionNames);
-
-data_train = [];
-labels_train = [];
-
-display('Loading Training data');
-for d = 1:4
-    sc = int2str(d);
-    for pe = 1: n_pe_tr
-
-        for act = 1:n_actions
-
-            load_name = strcat('./run', run,  '/FV_training/FV_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.txt');
-            sLoad = char(load_name);
-            FV = load(sLoad);
-            data_train = [data_train FV];
-            labels_train = [labels_train (act - 1)]; % labels starts at 0
-
-        end
-    end
-end
-
-data_train = data_train';
-labels_train = labels_train';
-display('Training...');
-model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
-save_name = strcat('./run', run,  '/svm_model_Ng', Ng);
-sSave= char(save_name);
-display('Saving Model...');
-save(sSave, 'model');
-end
+% for r=1:RUN
+% fprintf('RUN %d \n', r);
+% run = int2str(r);
+% 
+% %sc = int2str(4);
+% 
+% people = importdata(strcat('./run', run, '/rand_selection_run', run, '.dat'));
+% actionNames = importdata('actionNames.txt');
+% people_train = people(1:16);
+% 
+% 
+% n_pe_tr  = length(people_train);
+% n_actions = length(actionNames);
+% 
+% data_train = [];
+% labels_train = [];
+% 
+% display('Loading Training data');
+% for d = 1:4
+%     sc = int2str(d);
+%     for pe = 1: n_pe_tr
+% 
+%         for act = 1:n_actions
+% 
+%             load_name = strcat('./run', run,  '/FV_training/FV_', people_train(pe),'_',actionNames(act),'_sc', sc, '_Ng', Ng, '.txt');
+%             sLoad = char(load_name);
+%             FV = load(sLoad);
+%             data_train = [data_train FV];
+%             labels_train = [labels_train (act - 1)]; % labels starts at 0
+% 
+%         end
+%     end
+% end
+% 
+% data_train = data_train';
+% labels_train = labels_train';
+% display('Training...');
+% model = svmtrain(labels_train, data_train, ['-s 0 -t 0 -b 1' ]);
+% save_name = strcat('./run', run,  '/svm_model_Ng', Ng);
+% sSave= char(save_name);
+% display('Saving Model...');
+% save(sSave, 'model');
+% end
 
 %% TESTING.
 %  Loading Testing data
