@@ -123,7 +123,7 @@ create_testing_hist(int N_cent, int segm_length)
   int n_people = people.n_rows;
   
   
-  for (int run=n_people;run>=1; run--)
+  for (int run=1;run<=12; run++)
   {
     wall_clock timer;
     timer.tic();
