@@ -67,8 +67,8 @@ main(int argc, char** argv)
     int N_cent = atoi(argv[1]);
     int segm_length = atoi(argv[2]);
 
-    create_training_vocabulary_hist( N_cent);
-    //create_testing_hist( N_cent, segm_length);
+    //create_training_vocabulary_hist( N_cent);
+    create_testing_hist( N_cent, segm_length);
     
     return 0;
   
