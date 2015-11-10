@@ -17,9 +17,9 @@ display('************************************************');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-prompt = 'Number of Gaussians? ';
-Ncent = input(prompt);
-%Ncent=32;
+%prompt = 'Number of Gaussians? ';
+%Ncent = input(prompt);
+Ncent=32;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -80,7 +80,7 @@ n_actions = length(actionNames);
 prompt = 'What is segment length? ';
 L = input(prompt);
 
-for r=1:RUN
+for r=RUN:-1:8
 run = int2str(r);
 fprintf('Testing RUN %d \n', r);
 display('Loading SVM Model'); % loading 'model'
