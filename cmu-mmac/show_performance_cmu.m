@@ -5,8 +5,6 @@ clc
 prompt = 'Segment Length? ';
 L = input(prompt);
 
-prompt = 'last _Run? ';
-last_r = input(prompt);
 
 
 perf = zeros(1,12);
