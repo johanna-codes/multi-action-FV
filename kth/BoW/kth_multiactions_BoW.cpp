@@ -59,18 +59,29 @@ main(int argc, char** argv)
   /// Getting the Histograms for the Testing Set  
   
   
-  if(argc < 3 )
+  if(argc < 2 )
   {
-    cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
+    //cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
+    cout << "usage: " << argv[0] << " Ng " << endl;
+
     return -1;
     
   }
   
   int N_cent = atoi(argv[1]);
-  int segm_length = atoi(argv[2]);
+  //int segm_length = atoi(argv[2]);
   
   create_training_vocabulary_hist( N_cent, RUN);
-  create_testing_hist(N_cent,  RUN, segm_length);
+  
+  vec vsegm_length; 
+  vsegm_length << 13 << 25 << 38 << 50 << endr ;
+  
+  for (int s=0;s<vsegm_length.n_elem;s++)
+  {
+    int segm_length = vsegm_length(s);
+    create_testing_hist(N_cent,  RUN, segm_length);
+    
+  }
   
   return 0;
   
