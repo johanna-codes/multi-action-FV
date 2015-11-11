@@ -19,3 +19,4 @@ end
 
 
 perf'
+mean(perf)
