@@ -45,6 +45,7 @@ k=1;
             fin = ini + L;   
             load_name = strcat('./run', run , '/multi_Histograms_BoW_OpenCV/multi_hist_', people_test(pe), '_Ng', Ng, 'fr_', int2str(ini), '_', int2str(fin), '.h5');
             sLoad = char(load_name);
+            if  (exist(sLoad))
             hinfo = hdf5info(sLoad);          
             hist_segment = hdf5read(hinfo.GroupHierarchy.Datasets(1));
             
@@ -58,6 +59,10 @@ k=1;
                  %display('Piensa piensa');
                  f
              end
+            else
+               f
+               n_frames
+        end
         end
         
          for f=1:n_frames

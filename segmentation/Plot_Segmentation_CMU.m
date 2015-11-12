@@ -61,7 +61,7 @@ set(gcf,'PaperPosition', myfiguresize);
 %print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_real_labels','-depsc2','-r300');
 
 %NICTA
-%print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_real_labels','-depsc2','-r300');
+print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_real_labels_2','-depsc2','-r300');
 
 
 
@@ -94,7 +94,7 @@ set(gcf,'PaperPosition', myfiguresize);
 %print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_est_labels_BoW','-depsc2','-r300');
 
 %NICTA
-%print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_est_labels_BoW','-depsc2','-r300');
+print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_est_labels_BoW_2','-depsc2','-r300');
 
 
 
@@ -136,7 +136,7 @@ set(gcf,'PaperPosition', myfiguresize);
 %Home
 %print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_est_labels_FV','-depsc2','-r300');
 %NICTA
-%print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_est_labels_FV','-depsc2','-r300');
+print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_est_labels_FV_2','-depsc2','-r300');
 
 
 
