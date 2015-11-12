@@ -25,12 +25,10 @@ C = {Purple, Gray, Orange,Red,Maroon,Yellow,Olive,Lime,Green,Aqua,Teal,Blue,Navy
 
 %% BoW
 
-load CMU_BoW_test_info_Ng128_L45_run12.mat
+load CMU_BoW_test_info_Ng128_L60_run3.mat
 
 
 BoW_real_labels_cmu = test_info{1,2} ;
-
-
 BoW_est_labels_cmu  = test_info{1,3} ;
 
 
@@ -43,6 +41,8 @@ end
 axis([-50, length(BoW_real_labels_cmu)+50, -0.1, 0.6])
 set(gca, 'XTickLabelMode', 'manual', 'XTickLabel', []);
 set(gca, 'YTickLabelMode', 'manual', 'YTickLabel', []);
+
+%title('Real Labels');
 set(gca,'Visible','off')
 
 %To save
@@ -56,7 +56,13 @@ left = (papersize(1)- width)/2;
 bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
-print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_real_labels','-depsc2','-r300');
+
+%Home
+%print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_real_labels','-depsc2','-r300');
+
+%NICTA
+%print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_real_labels','-depsc2','-r300');
+
 
 
 
@@ -69,6 +75,7 @@ end
 axis([-50, length(BoW_est_labels_cmu)+50, -0.1, 0.6])
 set(gca, 'XTickLabelMode', 'manual', 'XTickLabel', []);
 set(gca, 'YTickLabelMode', 'manual', 'YTickLabel', []);
+%title('Est labels for BoW');
 set(gca,'Visible','off')
 
 %To save
@@ -82,16 +89,23 @@ left = (papersize(1)- width)/2;
 bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
-print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_est_labels_BoW','-depsc2','-r300');
+
+%Home
+%print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_est_labels_BoW','-depsc2','-r300');
+
+%NICTA
+%print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_est_labels_BoW','-depsc2','-r300');
+
+
+
 
 %% FV
 
-load CMU_FV_test_Ng128_L45_run12.mat
+load CMU_FV_test_info_Ng128_L60_run3.mat
 FV_real_labels_cmu = test_info{1,2} ;
 FV_est_labels_cmu  = test_info{1,3} ;
 
-
-acc = sum(BoW_real_labels_cmu == FV_real_labels_cmu)*100/length(BoW_real_labels_cmu);
+%acc = sum(BoW_real_labels_cmu == FV_real_labels_cmu)*100/length(BoW_real_labels_cmu);
 
 
 
@@ -104,6 +118,7 @@ end
 axis([-50, length(FV_est_labels_cmu)+50, -0.1, 0.6])
 set(gca, 'XTickLabelMode', 'manual', 'XTickLabel', []);
 set(gca, 'YTickLabelMode', 'manual', 'YTickLabel', []);
+%title('Est Labels for FV')
 set(gca,'Visible','off')
 
 %To save
@@ -117,9 +132,65 @@ left = (papersize(1)- width)/2;
 bottom = (papersize(2)- height)/2;
 myfiguresize = [left, bottom, width, height];
 set(gcf,'PaperPosition', myfiguresize);
-print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_est_labels_FV','-depsc2','-r300');
 
+%Home
+%print('/media/johanna/HD1T/latex-svn/assembla/wacv_2016_a/images/segmentation/CMU_est_labels_FV','-depsc2','-r300');
+%NICTA
+%print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/segmentation/CMU_est_labels_FV','-depsc2','-r300');
+
+
+
+close all
+
+%% Confusion Matrix
+
+figure
+confMat_2 = confMatGet(FV_real_labels_cmu, FV_est_labels_cmu);
+opt_2=confMatPlot('defaultOpt');
+opt_2.className={'close', 'crack', 'none', 'open', 'pour', 'put', 'read', 'spray', 'stir', 'switch-on', 'take','twist-off','twist-on','walk'};
+opt_2.mode='percentage';
+opt_2.format='8.1f';
+confMatPlot(confMat_2,opt_2);
+%title('Confusion Matrix for FV')
+
+%To save
+width  = 10;     % Width in inches
+height = 10;    % Height in inches
+set(gcf,'InvertHardcopy','on');
+set(gcf,'PaperUnits', 'inches');
+papersize = get(gcf, 'PaperSize');
+left = (papersize(1)- width)/2;
+bottom = (papersize(2)- height)/2;
+myfiguresize = [left, bottom, width, height];
+set(gcf,'PaperPosition', myfiguresize);
+%NICTA
+print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/CF_CMU_FV','-depsc2','-r300');
+
+
+
+figure
+confMat = confMatGet(BoW_real_labels_cmu, BoW_est_labels_cmu);
+opt=confMatPlot('defaultOpt');
+opt.className={'close', 'crack', 'none', 'open', 'pour', 'put', 'read', 'spray', 'stir', 'switch-on', 'take','twist-off','twist-on','walk'};
+opt.mode='percentage';
+opt.format='8.1f';
+confMatPlot(confMat, opt);
+%title('Confusion Matrix for BoW')
  
+%To save
+width  = 10;     % Width in inches
+height = 10;   % Height in inches
+set(gcf,'InvertHardcopy','on');
+set(gcf,'PaperUnits', 'inches');
+papersize = get(gcf, 'PaperSize');
+left = (papersize(1)- width)/2;
+bottom = (papersize(2)- height)/2;
+myfiguresize = [left, bottom, width, height];
+set(gcf,'PaperPosition', myfiguresize);
+%NICTA
+print('/home/johanna/latex-svn/assembla/papers-svn/wacv_2016_a/images/CF_CMU_BoW','-depsc2','-r300');
+
+
 
 
 
