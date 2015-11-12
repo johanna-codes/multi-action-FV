@@ -62,6 +62,7 @@ k=1;
             else
                f
                n_frames
+               pause
         end
         end
         
