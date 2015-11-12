@@ -54,7 +54,7 @@ set(gcf,'PaperPosition', myfiguresize);
 cmu_overseg_1 = [32.2  33.1 33.8 34.0 34.5 34.6	];  %256
 cmu_overseg_2 = [35.3  37.0	37.7 38.1 38.0 37.8	];  %128
 cmu_overseg_3 = [37.6  39.6 40.3 40.7 40.9 40.5 ];  %64
-
+cmu_overseg_4 = [38.0  40.1	40.5 40.8 40.5 40.0 ];%This is the average for only 4 RUNS!!!!
 
 t = [0.5 1 1.5 2 2.5 3];
 figure(2)
@@ -62,12 +62,15 @@ plot(t, cmu_overseg_1, '-rx','LineWidth',3,'MarkerSize',10)
 hold on
 plot(t, cmu_overseg_2, '-.bd','LineWidth',3,'MarkerSize',10)
 plot(t, cmu_overseg_3, ':ko','LineWidth',3,'MarkerSize',10)
+plot(t, cmu_overseg_4, '--g>','LineWidth',3,'MarkerSize',10)
 grid
 axis([0.4,3.1,24,42])
 %title('CMU-MMAC dataset','FontSize',24,'FontWeight','bold');
 set(gca,'XTick',t); % Change x-axis ticks
 set(gca,'XTickLabel',t, 'FontSize',20); % Change x-axis ticks labels to desired values.
-h_legend = legend('K = 256','K = 128','K = 64', 'Location','southwest');
+%h_legend = legend('K = 256','K = 128','K = 64', 'Location','southwest');
+h_legend = legend('K = 256','K = 128','K = 64', 'K = 32' ,'Location','southwest');
+
 set(h_legend,'FontSize',16);%ylabel('Performance (%)','FontSize',24,'FontWeight','bold') % y-axis label
 %xlabel({'Segment Length (seconds)'; ' '},'FontSize',24,'FontWeight','bold') % x-axis label
 
@@ -88,7 +91,7 @@ set(gcf,'PaperPosition', myfiguresize);
 
 %%Step4
 
-%print('cmu_K256_128_64_August','-depsc2','-r300');
+print('cmu_K256_128_64_32_Nov2015','-depsc2','-r300');
 
 
 
