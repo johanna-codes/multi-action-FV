@@ -57,18 +57,27 @@ main(int argc, char** argv)
 {
   
     
-  if(argc < 3 )
+//   if(argc < 3 )
+//   {
+//     cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
+//     return -1;    
+//   }
+//   
+  
+    //int N_cent = atoi(argv[1]);
+    //int segm_length = atoi(argv[2]);
+  
+  int segm_length;
+  int N_cent = 32;
+  vec vec_segm;
+  vec_segm << 45 << 60 << 75 << 90 << endr;
+  
+  for (int i=0; i<vec_segm.n_elem; ++i)
   {
-    cout << "usage: " << argv[0] << " Ng Segm_length" << endl;
-    return -1;    
-  }
-  
-  
-    int N_cent = atoi(argv[1]);
-    int segm_length = atoi(argv[2]);
-
+    segm_length = vec_segm (i);
     //create_training_vocabulary_hist( N_cent);
     create_testing_hist( N_cent, segm_length);
+  }
     
     return 0;
   
@@ -123,7 +132,7 @@ create_testing_hist(int N_cent, int segm_length)
   int n_people = people.n_rows;
   
   
-  for (int run=12;run>=7; run--)
+  for (int run=4;run<=12; run++)
   {
     wall_clock timer;
     timer.tic();
