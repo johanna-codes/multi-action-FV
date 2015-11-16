@@ -32,7 +32,7 @@ BoW_train_cmu(RUN, Ng, path_run_folders);
 %% Testing
 vec_L =[15 30 45 60 75 90];
 for l=1:length(vec_L)
-    L = vec_L(l);
+    L = vec_L(l)
     all_run_acc = BoW_test_cmu(Ng,RUN,L,path_run_folders);
     %all_run_acc'
 end
