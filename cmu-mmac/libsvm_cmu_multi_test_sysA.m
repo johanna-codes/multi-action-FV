@@ -80,7 +80,7 @@ n_actions = length(actionNames);
 prompt = 'What is segment length? ';
 L = input(prompt);
 
-for r=9:RUN
+for r=1:RUN
 run = int2str(r);
 fprintf('Testing RUN %d \n', r);
 display('Loading SVM Model'); % loading 'model'
